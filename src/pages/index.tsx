@@ -1,11 +1,10 @@
 import Layout from '@/components/Layout';
+import SalesSumary from '@/components/sales/SalesSumary';
 import { useResumen } from '@/hooks/useResumen';
 import Head from 'next/head';
 
-export default function Home() {
+function Home() {
 	const { isLoading, resumen } = useResumen();
-
-	console.log(resumen);
 
 	return (
 		<>
@@ -16,17 +15,18 @@ export default function Home() {
 					content='Consulte las métricas de resumen en nuestra página de inicio, incluyendo datos de ventas, pedidos y rendimiento de su negocio.'
 				/>
 			</Head>
-			<main className='flex items-center text-dark w-full min-h-[calc(100vh-80px)] dark:text-light sm:items-start'>
-				<Layout className='pt-0 md:pt-16 sm:pt-16'>
-					<div className='flex items-start justify-between w-full  border-2 border-red-800'>
-						{isLoading ? (
-							<span className='text-2xl'>Loading... </span>
-						) : (
-							<span className='text-2xl'>Hola</span>
-						)}
-					</div>
-				</Layout>
+
+			<main className='flex items-start text-dark w-full min-h-[calc(100vh-80px)] dark:text-light sm:items-start '>
+				{isLoading ? (
+					<p>Loading</p>
+				) : (
+					<Layout className='flex flex-col items-center gap-2 pt-2 '>
+						{resumen && <SalesSumary resumen={resumen} />}
+					</Layout>
+				)}
 			</main>
 		</>
 	);
 }
+
+export default Home;
