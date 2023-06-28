@@ -52,23 +52,5 @@ export default function Bars() {
 		}
 	}, [usuarios]);
 
-	// Configuración de opciones para el gráfico
-	const chartOptions = {
-		scales: {
-			y: {
-				min: 0,
-				max: 1,
-				ticks: {
-					stepSize: 1
-				}
-			}
-		}
-	};
-
-	return (
-		<Bar
-			data={chartData}
-			options2={chartOptions}
-		/>
-	);
+	return <Bar data={chartData} />;
 }
