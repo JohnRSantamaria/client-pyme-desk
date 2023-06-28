@@ -16,7 +16,7 @@ function Home() {
 				/>
 			</Head>
 
-			<main className='flex items-start text-dark w-full min-h-[calc(100vh-80px)] dark:text-light sm:items-start '>
+			<main className='flex items-start text-dark w-full min-h-[calc(100vh-80px)] dark:text-light sm:items-start pb-16'>
 				{isLoading ? (
 					<p>Loading</p>
 				) : (
