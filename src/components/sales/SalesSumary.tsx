@@ -6,7 +6,7 @@ import Money from '../svgs/Money';
 import Truck from '../svgs/Truck';
 import CityScape from '../svgs/CityScape';
 import SalesItems from './SalesItemsProps';
-import BarsPrueva from '../charts/BarChart';
+import BarsPrueva from '../Charts/BarChart';
 
 interface SalesSumaryProps {
 	resumen?: Resumen;
