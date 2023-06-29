@@ -6,7 +6,7 @@ import Money from '../svgs/Money';
 import Truck from '../svgs/Truck';
 import CityScape from '../svgs/CityScape';
 import SalesItems from './SalesItemsProps';
-import BarsPrueva from '../charts/BarChart';
+// import BarsPrueva from '../charts/BarChart';
 
 interface SalesSumaryProps {
 	resumen?: Resumen;
@@ -71,7 +71,7 @@ const SalesSumary: React.FC<SalesSumaryProps> = ({ resumen }) => {
 					</SalesItems>
 				</article>
 				<article className='flex items-center justify-center w-full h-auto p-48 2xl:p-32 lg:p-8 md:hidden'>
-					<BarsPrueva />
+					{/* <BarsPrueva /> */}
 				</article>
 			</section>
 		</>
