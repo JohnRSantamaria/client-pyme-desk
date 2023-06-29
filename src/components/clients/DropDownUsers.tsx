@@ -1,4 +1,4 @@
-import { Fragment, MouseEvent } from 'react';
+import { FC, Fragment, MouseEvent } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
@@ -6,25 +6,30 @@ function classNames(...classes: string[]) {
 	return classes.filter(Boolean).join(' ');
 }
 
-export default function DropDownUsers() {
-	const ciudades = [
-		'Barranquilla',
-		'Cartagena',
-		'Bucaramanga',
-		'Pereira',
-		'Santa Marta',
-		'Ibagué',
-		'Manizales',
-		'Cali',
-		'Bogotá',
-		'Medellín'
-	] as const;
+interface DropDownUsersProps {
+	setBuscarCiudad: (buscarCiudad: string) => void;
+}
 
-	type Ciudad = (typeof ciudades)[number];
+const ciudades = [
+	'',
+	'Barranquilla',
+	'Cartagena',
+	'Bucaramanga',
+	'Pereira',
+	'Santa Marta',
+	'Ibagué',
+	'Manizales',
+	'Cali',
+	'Bogotá',
+	'Medellín'
+] as const;
 
+type Ciudad = (typeof ciudades)[number];
+
+const DropDownUsers: FC<DropDownUsersProps> = ({ setBuscarCiudad }) => {
 	const handleClickCities = (event: MouseEvent<HTMLSpanElement>) => {
-		const ciudad = event.currentTarget.getAttribute('data-ciudad');
-		console.log(ciudad);
+		const ciudad = event.currentTarget.getAttribute('data-ciudad') || '';
+		setBuscarCiudad(ciudad);
 	};
 
 	return (
@@ -66,7 +71,7 @@ export default function DropDownUsers() {
 											'block px-4 py-2 text-sm cursor-pointer'
 										)}
 									>
-										{ciudad}
+										{ciudad === '' ? <p>Todas</p> : ciudad}
 									</span>
 								)}
 							</Menu.Item>
@@ -76,4 +81,5 @@ export default function DropDownUsers() {
 			</Transition>
 		</Menu>
 	);
-}
+};
+export default DropDownUsers;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Usuarios } from '@/interfaces/fetchUsuariosResponse';
-import { PageType } from '@/types';
+import { SearchType } from '@/types';
 
 interface ApiResponse {
 	count: number;
@@ -10,32 +10,23 @@ interface ApiResponse {
 	results: Usuarios[];
 }
 
-export const useUsuariosPagination = (page: PageType = 1) => {
-	const [isLoading, setIsLoading] = useState(true);
-	const [usuarios, setUsuarios] = useState<Usuarios[]>();
-	const [count, setCount] = useState(0);
-	const [next, setNext] = useState<string | null>(null);
-	const [previous, setPrevious] = useState<string | null>(null);
+export const useUsuariosPagination = async () => {
+	const [data, setData] = useState([]);
+	const [totalPages, setTotalPages] = useState(1);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [cityFilter, setCityFilter] = useState('');
 
 	useEffect(() => {
-		if (!usuarios) {
-			setIsLoading(true);
-			axios
-				.get(`/api/clientes`)
-				.then((response) => {
-					const data: ApiResponse = response.data;
-					setUsuarios(data.results);
-					setCount(data.count);
-					setNext(data.next);
-					setPrevious(data.previous);
-					setIsLoading(false);
-				})
-				.catch((error) => {
-					console.error('Error fetching usuarios:', error);
-					setIsLoading(false);
-				});
-		}
-	}, [usuarios, page]);
+		fetchData(currentPage, cityFilter);
+	}, [currentPage, cityFilter]);
 
-	return { isLoading, usuarios, count, next, previous };
+	const fetchData = async (pageNumber: any, city: any) => {
+		const response = await axios.get(`/api/usuarios?page=${pageNumber}&ciudad=${city}`);
+		setData(response.data.results);
+		const totalResults = response.data.count;
+		const resultsPerPage = response.data.results.length;
+		setTotalPages(Math.ceil(totalResults / resultsPerPage));
+	};
+
+	return { data, totalPages };
 };

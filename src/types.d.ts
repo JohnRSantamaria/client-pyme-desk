@@ -21,4 +21,4 @@ export type Ciudad =
 
 export type ResponseType = Usuarios | { Message: string };
 
-type PageType = number | string;
+type SearchType = number | string;

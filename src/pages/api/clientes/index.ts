@@ -4,6 +4,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<Usuarios>) => {
 	if (req.method === 'GET') {
+		console.log('esta en la que no tiene param');
 		const { data } = await axios.get(
 			'https://server-pyme-desk.onrender.com/api/usuarios'
 		);

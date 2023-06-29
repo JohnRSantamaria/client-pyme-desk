@@ -1,22 +1,22 @@
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Button from './Button';
 
 interface PaginationNavProps {
-	gotoPage: (pageIndex: number) => void;
+	gotoPage: (page: number) => void;
 	canPreviousPage: boolean;
 	canNextPage: boolean;
 	pageCount: number;
 	pageIndex: number;
 }
 
-function PaginationNav({
+const PaginationNav: React.FC<PaginationNavProps> = ({
 	gotoPage,
 	canPreviousPage,
 	canNextPage,
 	pageCount,
 	pageIndex
-}: PaginationNavProps) {
+}) => {
 	const renderPageLinks = useCallback(() => {
 		if (pageCount === 0) return null;
 		const visiblePageButtonCount = 3;
@@ -27,12 +27,16 @@ function PaginationNav({
 		[...Array(numberOfButtons)].forEach((_item, itemIndex) => {
 			const pageNumberBefore = pageIndices[0] - 1;
 			const pageNumberAfter = pageIndices[pageIndices.length - 1] + 1;
-			if (
-				pageNumberBefore >= 0 &&
-				(itemIndex < numberOfButtons / 2 || pageNumberAfter > pageCount - 1)
-			) {
+
+			if (pageNumberBefore >= 0 && pageNumberAfter < pageCount) {
+				if (itemIndex % 2 === 0) {
+					pageIndices.push(pageNumberAfter);
+				} else {
+					pageIndices.unshift(pageNumberBefore);
+				}
+			} else if (pageNumberBefore >= 0) {
 				pageIndices.unshift(pageNumberBefore);
-			} else {
+			} else if (pageNumberAfter < pageCount) {
 				pageIndices.push(pageNumberAfter);
 			}
 		});
@@ -83,6 +87,6 @@ function PaginationNav({
 			</li>
 		</ul>
 	);
-}
+};
 
 export default PaginationNav;
