@@ -24,7 +24,7 @@ const Clients = () => {
 		const response = await axios.get(`/api/usuarios?page=${pageNumber}&ciudad=${city}`);
 		setData(response.data.results);
 		const totalResults = response.data.count;
-		const resultsPerPage = response.data.results.length;
+		const resultsPerPage = 9;
 		setTotalPages(Math.ceil(totalResults / resultsPerPage));
 	};
 
