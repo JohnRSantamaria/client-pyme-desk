@@ -1,12 +1,12 @@
 import { PaginationProps } from '@/interfaces/PaginationProps';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import PaginationNav from './PaginationNav';
 
 function Pagination({ count, setPage }: PaginationProps) {
 	const [pageIndex, setPageIndex] = useState<number>(0);
 	const pageCount: number = count;
 
-	useMemo(() => {
+	useEffect(() => {
 		setPage(pageIndex + 1);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pageIndex]);

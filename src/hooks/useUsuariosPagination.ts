@@ -3,23 +3,39 @@ import axios from 'axios';
 import { Usuarios } from '@/interfaces/fetchUsuariosResponse';
 import { PageType } from '@/types';
 
-// Puedes usar un tipo más específico aquí si necesitas validaciones adicionales.
+interface ApiResponse {
+	count: number;
+	next: string | null;
+	previous: string | null;
+	results: Usuarios[];
+}
 
 export const useUsuariosPagination = (page: PageType = 1) => {
 	const [isLoading, setIsLoading] = useState(true);
-	const [usuarios, setUsuarios] = useState<Usuarios>();
+	const [usuarios, setUsuarios] = useState<Usuarios[]>();
 	const [count, setCount] = useState(0);
+	const [next, setNext] = useState<string | null>(null);
+	const [previous, setPrevious] = useState<string | null>(null);
 
 	useEffect(() => {
-		setIsLoading(true); // Configura isLoading a true cada vez que page cambia.
+		if (!usuarios) {
+			setIsLoading(true);
+			axios
+				.get(`/api/clientes`)
+				.then((response) => {
+					const data: ApiResponse = response.data;
+					setUsuarios(data.results);
+					setCount(data.count);
+					setNext(data.next);
+					setPrevious(data.previous);
+					setIsLoading(false);
+				})
+				.catch((error) => {
+					console.error('Error fetching usuarios:', error);
+					setIsLoading(false);
+				});
+		}
+	}, [usuarios, page]);
 
-		axios.get(`/api/clientes/${page}`).then(({ data }) => {
-			setUsuarios(data.results);
-			setCount(Math.ceil(data.count / 9));
-			setIsLoading(false);
-		});
-		// Asegúrate de agregar page como dependencia.
-	}, [page]);
-
-	return { isLoading, usuarios, count };
+	return { isLoading, usuarios, count, next, previous };
 };

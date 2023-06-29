@@ -8,8 +8,10 @@ export const useResumen = () => {
 
 	useEffect(() => {
 		if (resumen === undefined) {
-			axios.get('/api/resumen').then(({ data }) => setResumen(data));
-			setIsLoading(false);
+			axios.get('/api/resumen').then(({ data }) => {
+				setIsLoading(false);
+				setResumen(data);
+			});
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);

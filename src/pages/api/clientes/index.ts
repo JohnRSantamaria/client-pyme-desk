@@ -4,11 +4,11 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<Usuarios>) => {
 	if (req.method === 'GET') {
-		const response = await axios.get(
+		const { data } = await axios.get(
 			'https://server-pyme-desk.onrender.com/api/usuarios'
 		);
-		const data = response.data.results;
 
+		console.log();
 		return res.status(200).json(data);
 	}
 };

@@ -1,12 +1,17 @@
 import Layout from '@/components/Layout';
 import SalesSumary from '@/components/sales/SalesSumary';
+import L4 from '@/components/svgs/Loader';
 import { useResumen } from '@/hooks/useResumen';
 import Head from 'next/head';
 
 function Home() {
 	const { isLoading, resumen } = useResumen();
 
-	return (
+	return isLoading ? (
+		<div className='flex justify-center items-center w-full h-screen text-white text-3xl text-center'>
+			<L4 />
+		</div>
+	) : (
 		<>
 			<Head>
 				<title>Home Pyme Desk | Panel de metricas</title>

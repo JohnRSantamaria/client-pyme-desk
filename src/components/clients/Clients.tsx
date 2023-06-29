@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Head from 'next/head';
 import AnimatedText from '../AnimateText';
 import Client from './Client';
 import { Usuarios } from '@/interfaces/fetchUsuariosResponse';
 import DropDownUsers from './DropDownUsers';
 import { useUsuariosPagination } from '@/hooks/useUsuariosPagination';
 import Pagination from '../pagination/Pagination';
+import L4 from '../svgs/Loader';
 
 const Clients = () => {
-	const [page, setPage] = useState(1);
-	const { usuarios, count } = useUsuariosPagination(page);
+	const { count, isLoading, next, previous, usuarios } = useUsuariosPagination();
 
-	return (
+	return isLoading ? (
+		<L4 />
+	) : (
 		<>
 			<header>
 				<AnimatedText
@@ -37,11 +40,11 @@ const Clients = () => {
 						})}
 				</article>
 			</section>
-
+			{/* 
 			<Pagination
 				count={count}
 				setPage={setPage}
-			/>
+			/> */}
 		</>
 	);
 };

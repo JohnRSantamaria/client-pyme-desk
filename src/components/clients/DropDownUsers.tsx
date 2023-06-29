@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, MouseEvent } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 
@@ -19,7 +19,14 @@ export default function DropDownUsers() {
 		'Bogotá',
 		'Medellín'
 	] as const;
+
 	type Ciudad = (typeof ciudades)[number];
+
+	const handleClickCities = (event: MouseEvent<HTMLSpanElement>) => {
+		const ciudad = event.currentTarget.getAttribute('data-ciudad');
+		console.log(ciudad);
+	};
+
 	return (
 		<Menu
 			as='div'
@@ -47,19 +54,20 @@ export default function DropDownUsers() {
 				<Menu.Items className='absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-zinc-800'>
 					<div className='py-1'>
 						{ciudades.map((ciudad: Ciudad, index: number) => (
-							<Menu.Item key={ciudad}>
+							<Menu.Item key={ciudad + index}>
 								{({ active }) => (
-									<a
-										href='#'
+									<span
+										data-ciudad={ciudad}
+										onClick={handleClickCities}
 										className={classNames(
 											active
-												? 'bg-gray-100 text-gray-900 dark:bg-zinc-800 dark:text-slate-100'
+												? 'bg-gray-100 text-gray-900 dark:bg-zinc-200 dark:text-zinc-900'
 												: 'text-gray-700 dark:text-slate-300',
-											'block px-4 py-2 text-sm'
+											'block px-4 py-2 text-sm cursor-pointer'
 										)}
 									>
 										{ciudad}
-									</a>
+									</span>
 								)}
 							</Menu.Item>
 						))}
