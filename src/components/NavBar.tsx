@@ -4,7 +4,7 @@ export const NavBar = () => {
 	return (
 		<header className='w-full px-32 py-8 font-medium flex items-center justify-between dark:text-light relative z-10 lg:px-16 md:px-12 sm:px-8'>
 			<div className='w-full flex justify-between items-center '>
-				<nav className='flex items-center justify-center'>
+				<nav className='flex items-center justify-between'>
 					<CustomLink
 						href='/'
 						title='Home'

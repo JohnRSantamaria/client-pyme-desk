@@ -5,7 +5,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 const handler = async (req: NextApiRequest, res: NextApiResponse<Usuarios>) => {
 	if (req.method === 'GET') {
 		const response = await axios.get(
-			'https://server-pyme-desk.onrender.com/api/usuarios'
+			'https://server-pyme-desk.onrender.com/api/usuarios?page_size=100'
 		);
 		const data = response.data.results;
 

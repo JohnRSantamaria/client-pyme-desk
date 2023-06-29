@@ -6,7 +6,7 @@ import Money from '../svgs/Money';
 import Truck from '../svgs/Truck';
 import CityScape from '../svgs/CityScape';
 import SalesItems from './SalesItemsProps';
-import Bars from '../Charts/BarChart';
+import Bars from '../charts/BarChart';
 
 interface SalesSumaryProps {
 	resumen?: Resumen;
@@ -34,7 +34,7 @@ const SalesSumary: React.FC<SalesSumaryProps> = ({ resumen }) => {
 				/>
 			</header>
 			<section className='flex flex-col justify-evenly items-center w-full auto pt-16 border border-light dark:border-dark shadow-2xl'>
-				<article className='grid grid-cols-3 grid-flow-row place-items-center gap-y-16 gap-x-2 2xl:grid-cols-2 lg:grid-cols-1 md:pb-16'>
+				<article className='grid grid-cols-3 grid-flow-row place-items-center gap-y-16 gap-x-2  2xl:grid-cols-2 lg:grid-cols-1 md:pb-16'>
 					<SalesItems
 						title={'Número de pedidos'}
 						data={numero_de_pedidos}

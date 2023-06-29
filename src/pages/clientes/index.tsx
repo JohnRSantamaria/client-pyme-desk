@@ -1,8 +1,8 @@
 import Layout from '@/components/Layout';
+import Clients from '@/components/clients/Clients';
 import Head from 'next/head';
-import React from 'react';
 
-function Clientes() {
+const Clientes: React.FC = () => {
 	return (
 		<>
 			<Head>
@@ -12,13 +12,13 @@ function Clientes() {
 					content='Administre la información y los perfiles de sus clientes en esta página. Vea su historial de compras, preferencias y mantenga sus datos de contacto actualizados.'
 				/>
 			</Head>
-			<main className='flex w-full flex-col items-center justify-center min-h-[calc(100vh-80px)] dark:text-light'>
-				<Layout className='pt-16'>
-					<h1>Clientes</h1>
+			<div className='flex w-full flex-col items-center justify-start min-h-[calc(100vh-80px)] dark:text-light'>
+				<Layout className='flex flex-col items-center gap-2 pt-2'>
+					<Clients />
 				</Layout>
-			</main>
+			</div>
 		</>
 	);
-}
+};
 
 export default Clientes;

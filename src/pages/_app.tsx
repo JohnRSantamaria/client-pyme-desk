@@ -1,9 +1,11 @@
-import Footer from '@/components/Footer';
-import { NavBar } from '@/components/NavBar';
 import '@/styles/globals.css';
+
 import type { AppProps } from 'next/app';
 import { Montserrat } from 'next/font/google';
+
 import Head from 'next/head';
+import Footer from '@/components/Footer';
+import { NavBar } from '@/components/NavBar';
 
 const montserrat = Montserrat({
 	subsets: ['latin'],
