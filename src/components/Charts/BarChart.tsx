@@ -17,7 +17,7 @@ import { ChartData } from '@/types';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-export default function Bars() {
+function Bars() {
 	const emptyChartData: ChartData = {
 		labels: [],
 		datasets: [
@@ -54,3 +54,5 @@ export default function Bars() {
 
 	return <Bar data={chartData} />;
 }
+
+export default Bars;
