@@ -6,7 +6,7 @@ import { Usuarios } from '@/interfaces/fetchUsuariosResponse';
 import DropDownUsers from './DropDownUsers';
 import { useUsuariosPagination } from '@/hooks/useUsuariosPagination';
 import Pagination from '../pagination/Pagination';
-import L4 from '../svgs/Loader';
+import L4 from '@/components/svgs/Loader';
 
 const Clients = () => {
 	const { count, isLoading, next, previous, usuarios } = useUsuariosPagination();
