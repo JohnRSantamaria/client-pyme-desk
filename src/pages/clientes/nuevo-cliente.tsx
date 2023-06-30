@@ -61,29 +61,21 @@ const Newclient: React.FC = () => {
 			setCityError('Debe seleccionar una ciudad');
 			esValido = false;
 		} else {
-			// Buscar la ciudad seleccionada
 			const ciudadSeleccionada = cuidades.find((ciudad) => ciudad.id === value);
-
-			// Actualizar userDataActualizado con la ciudad seleccionada
 			if (ciudadSeleccionada) {
 				userDataActualizado.ciudad = ciudadSeleccionada.caption;
 			}
 		}
 
-		// Actualizar el estado de errores
 		setErrors(erroresDeValidacion);
 
-		// Comprobar si hay errores de validación
 		if (Object.keys(erroresDeValidacion).length !== 0) {
 			esValido = false;
 		}
 
-		// Si no hay errores y la ciudad fue seleccionada, aquí puedes continuar con la lógica que desees
 		if (esValido) {
-			// Actualizar el estado de userData con userDataActualizado
 			setUserData(userDataActualizado);
 
-			// Ahora userDataActualizado tiene los datos más recientes
 			console.log(userDataActualizado);
 		}
 	};
