@@ -8,7 +8,7 @@ export const useUsuarios = () => {
 
 	useEffect(() => {
 		if (usuarios === undefined) {
-			axios.get('/api/clientes/all').then(({ data }) => setUsuarios(data));
+			axios.get('/api/usuarios/all').then(({ data }) => setUsuarios(data));
 			setIsLoading(false);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps

@@ -39,3 +39,21 @@ export const ciudades = [
 ] as const;
 
 export type Ciudad = (typeof ciudades)[number];
+// Types para pedido
+
+export type PedidoType = {
+	id: number;
+	productos: {
+		id: number;
+		cantidad: number;
+		producto: number;
+	}[];
+	fecha: string;
+	estado: string;
+	pagado: boolean;
+	regla_envio: string;
+	observaciones: string;
+	cliente: number;
+	productos_nombres: string[];
+	cliente_nombre: string;
+};

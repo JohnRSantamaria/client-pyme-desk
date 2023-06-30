@@ -25,7 +25,7 @@ const Clients = () => {
 			/>
 
 			<main className='flex flex-col justify-between items-center w-full min-h-[calc(100vh-200px)] '>
-				<section className='flex flex-col justify-start items-center w-full min-h-[650px] auto pt-2 border-light dark:border-dark shadow-2xl'>
+				<section className='flex flex-col justify-start items-center w-full min-h-[500px] auto pt-2 border-light dark:border-dark shadow-2xl'>
 					<article className='flex justify-end items-center w-full h-12 border-b gap-4 pr-4 rounded-1xl border-gray-500 sm:justify-center'>
 						<button
 							onClick={handleClickAddClient}

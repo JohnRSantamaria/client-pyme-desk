@@ -26,7 +26,7 @@ export function useEnviarDatos(): UseEnviarDatosResult {
 		setError(null);
 
 		try {
-			const response = await axios.post('/api/clientes', datos);
+			const response = await axios.post('/api/usuarios', datos);
 
 			setData(response.data);
 		} catch (error) {
