@@ -32,8 +32,7 @@ const PageLinks: React.FC<PageLinksProps> = ({ pageCount, pageIndex, gotoPage })
 				pageIndices.push(pageNumberAfter);
 			}
 		});
-		console.log(pageCount);
-		console.log(numberOfButtons);
+
 		// Ordenar los índices antes de renderizar los botones
 		pageIndices.sort((a, b) => a - b);
 

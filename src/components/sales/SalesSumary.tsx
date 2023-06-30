@@ -70,7 +70,7 @@ const SalesSumary: React.FC<SalesSumaryProps> = ({ resumen }) => {
 						<Tshirt className='text-primary dark:text-primaryDark' />
 					</SalesItems>
 				</article>
-				<article className='flex items-center justify-center w-full h-auto p-48 2xl:p-32 lg:p-8 md:hidden'>
+				<article className='flex items-center justify-center w-full h-auto p-48 2xl:p-32 lg:p-8 sm:hidden'>
 					<BarsPrueva />
 				</article>
 			</section>

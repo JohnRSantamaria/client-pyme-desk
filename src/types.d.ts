@@ -7,6 +7,7 @@ export type ChartData = {
 		borderColor: string;
 	}[];
 };
+
 export type Ciudad =
 	| 'Barranquilla'
 	| 'Cartagena'
@@ -22,3 +23,15 @@ export type Ciudad =
 export type ResponseType = Usuarios | { Message: string };
 
 type SearchType = number | string;
+
+type DatosUsuario = {
+	Nombre: string;
+	Celular: string;
+	Email: string;
+	Direccion: string;
+	ciudad?: string; // Utilizar 'ciudad' con 'c' minúscula
+};
+
+type ErroresValidacion = {
+	[K in keyof DatosUsuario]?: string;
+};
