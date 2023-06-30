@@ -4,6 +4,7 @@ import InputsForms from '@/components/forms/InputsForm';
 import { SelectMenu1 } from '@/components/forms/selectForm';
 import validation from '@/helpers/validation';
 import { DatosUsuario, ErroresValidacion } from '@/types';
+import Swal from 'sweetalert2';
 
 const Newclient: React.FC = () => {
 	const [value, setValue] = useState<number | string>(0);
@@ -52,12 +53,9 @@ const Newclient: React.FC = () => {
 		let userDataActualizado = { ...userData };
 		let esValido = true;
 
-		// Reset city error
 		setCityError(null);
 
-		// Validar si se seleccionó una ciudad
 		if (value === 0) {
-			// Establecer error de ciudad
 			setCityError('Debe seleccionar una ciudad');
 			esValido = false;
 		} else {
@@ -75,8 +73,18 @@ const Newclient: React.FC = () => {
 
 		if (esValido) {
 			setUserData(userDataActualizado);
-
+			Swal.fire({
+				title: 'Usuario Creado Con exito',
+				icon: 'success',
+				confirmButtonColor: '#58E6D9'
+			});
 			console.log(userDataActualizado);
+		} else {
+			Swal.fire({
+				title: 'Ingresa todos los datos',
+				icon: 'error',
+				confirmButtonColor: '#58E6D9'
+			});
 		}
 	};
 
@@ -88,7 +96,7 @@ const Newclient: React.FC = () => {
 			/>
 
 			<main className='flex flex-col justify-start items-center pt-8 w-full min-h-[calc(100vh-100px)]'>
-				<section className='flex flex-col gap-16  w-3/4  '>
+				<section className='flex flex-col gap-16  w-3/5  '>
 					<form
 						onSubmit={handleSubmit}
 						className='flex flex-col justify-center items-center gap-6 mt-6  '
@@ -98,40 +106,32 @@ const Newclient: React.FC = () => {
 							label='Nombre'
 							value={userData.Nombre}
 							onChange={handleInputChange}
-							error={errors.Nombre}
 						/>
 						<InputsForms
 							name='Celular'
 							label='Celular'
 							value={userData.Celular}
 							onChange={handleInputChange}
-							error={errors.Celular}
 						/>
 						<InputsForms
 							name='Email'
 							label='Email'
 							value={userData.Email}
 							onChange={handleInputChange}
-							error={errors.Email}
 						/>
 						<InputsForms
 							name='Direccion'
 							label='Direccion'
 							value={userData.Direccion}
 							onChange={handleInputChange}
-							error={errors.Direccion}
 						/>
 						<SelectMenu1
 							value={value}
 							setValue={setValue}
 							options={cuidades}
 						/>
-						{cityError && (
-							<span className='w-full text-primary dark:text-primaryDark '>
-								{cityError}
-							</span>
-						)}
-						<button className='w-[260px] ml-auto bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-xl shadow active:relative active:top-[1px] sm:mr-auto mb-4'>
+
+						<button className='w-[260px] ml-auto bg-zinc-100 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-xl shadow active:relative active:top-[1px] sm:mr-auto mb-4'>
 							Crear
 						</button>
 					</form>

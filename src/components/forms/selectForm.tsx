@@ -34,8 +34,12 @@ export const SelectMenu1: React.FC<SelectMenu1Props> = ({
 		>
 			<div className={`relative w-full ${className}`}>
 				<Listbox.Button
-					className={`relative w-full  rounded-xl py-3 pl-3 pr-10 text-base text-gray-700 text-left shadow-[0_4px_10px_rgba(0,0,0,0.03)] focus:outline-none
-          ${disabled ? 'bg-gray-200 cursor-not-allowed' : 'bg-white cursor-default'}
+					className={`relative w-full rounded-xl py-3 pl-3 pr-10 text-base text-gray-700 text-left shadow-[0_4px_10px_rgba(0,0,0,0.03)] focus:outline-none
+          ${
+						disabled
+							? 'bg-gray-200 cursor-not-allowed'
+							: 'bg-white dark:bg-zinc-100 cursor-default'
+					}
         
         `}
 				>
@@ -54,13 +58,13 @@ export const SelectMenu1: React.FC<SelectMenu1Props> = ({
 					leaveFrom='opacity-100'
 					leaveTo='opacity-0'
 				>
-					<Listbox.Options className='absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-xl bg-white text-base shadow-[0_4px_10px_rgba(0,0,0,0.03)] focus:outline-none'>
+					<Listbox.Options className='absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-xl bg-white dark:bg-zinc-100 text-base shadow-[0_4px_10px_rgba(0,0,0,0.03)] focus:outline-none'>
 						{options.map((option) => (
 							<Listbox.Option
 								key={option.id}
 								className={({ active }) =>
 									`relative cursor-default select-none py-3 pl-10 pr-4 ${
-										active ? 'bg-primary dark:bg-primaryDark' : ''
+										active ? 'bg-[rgba(240,86,199,0.7)] dark:bg-primaryDark ]' : ''
 									}`
 								}
 								value={option.id}
