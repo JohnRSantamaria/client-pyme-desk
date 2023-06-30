@@ -1,10 +1,7 @@
+import { svgPropsInterface } from '@/interfaces/svgInterface/loaderInterface';
 import React from 'react';
 
-interface MoonSVGProps {
-	className?: string;
-}
-
-const Moon: React.FC<MoonSVGProps> = ({ className }) => {
+const Moon: React.FC<svgPropsInterface> = ({ className }) => {
 	return (
 		<svg
 			version='1.0'

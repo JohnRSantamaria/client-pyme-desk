@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { CustomLinkInterface } from '@/interfaces/customLinkPropsInterface';
 
 const quote = {
 	initial: {
@@ -27,12 +28,8 @@ const singelWord = {
 		}
 	}
 };
-interface AnimateTextProps {
-	text: string;
-	className?: string;
-}
 
-const AnimatedText: React.FC<AnimateTextProps> = ({ text, className = '' }) => {
+const AnimatedText: React.FC<CustomLinkInterface> = ({ text, className = '' }) => {
 	return (
 		<div
 			className='w-full mx-auto py-2 flex items-center justify-center text-center

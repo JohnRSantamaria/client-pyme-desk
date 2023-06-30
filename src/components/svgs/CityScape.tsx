@@ -1,10 +1,7 @@
+import { svgPropsInterface } from '@/interfaces/svgInterface/loaderInterface';
 import React from 'react';
 
-interface CityScapeSVGProps {
-	className?: string;
-}
-
-const CityScape: React.FC<CityScapeSVGProps> = ({ className }) => {
+const CityScape: React.FC<svgPropsInterface> = ({ className }) => {
 	return (
 		<svg
 			version='1.0'

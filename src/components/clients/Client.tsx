@@ -1,12 +1,4 @@
-import { Usuarios } from '@/interfaces/fetchUsuariosResponse';
-
-interface ClientProps {
-	user: Usuarios;
-}
-interface FieldsProps {
-	data: string;
-	title: string;
-}
+import { ClientProps, FieldsProps } from '@/interfaces/clienteInterface/Clienteprops';
 
 const FieldsClient: React.FC<FieldsProps> = ({ data, title }) => {
 	return (

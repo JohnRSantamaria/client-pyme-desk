@@ -1,10 +1,7 @@
+import { svgPropsInterface } from '@/interfaces/svgInterface/loaderInterface';
 import React from 'react';
 
-interface TruckSVGProps {
-	className?: string;
-}
-
-const Truck: React.FC<TruckSVGProps> = ({ className }) => {
+const Truck: React.FC<svgPropsInterface> = ({ className }) => {
 	return (
 		<svg
 			version='1.0'

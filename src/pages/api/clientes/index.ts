@@ -1,5 +1,7 @@
-import { DatosClientesInterface } from '@/interfaces/datosClientesInterface';
-import { Usuarios } from '@/interfaces/fetchUsuariosResponse';
+import {
+	DatosClientesInterface,
+	Usuarios
+} from '@/interfaces/clienteInterface/Clienteprops';
 import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 

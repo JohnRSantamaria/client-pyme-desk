@@ -1,14 +1,7 @@
 import { FC, Fragment, MouseEvent } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
-
-function classNames(...classes: string[]) {
-	return classes.filter(Boolean).join(' ');
-}
-
-interface DropDownUsersProps {
-	setBuscarCiudad: (buscarCiudad: string) => void;
-}
+import { DropDownUsersProps } from '@/interfaces/clienteInterface/Clienteprops';
 
 const ciudades = [
 	'',
@@ -25,6 +18,10 @@ const ciudades = [
 ] as const;
 
 type Ciudad = (typeof ciudades)[number];
+
+function classNames(...classes: string[]) {
+	return classes.filter(Boolean).join(' ');
+}
 
 const DropDownUsers: FC<DropDownUsersProps> = ({ setBuscarCiudad }) => {
 	const handleClickCities = (event: MouseEvent<HTMLSpanElement>) => {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Usuarios } from '@/interfaces/fetchUsuariosResponse';
+import { Usuarios } from '@/interfaces/clienteInterface/Clienteprops';
 
 const useFetchClientes = (initialPage = 1, initialCityFilter = '') => {
 	const [data, setData] = useState<Usuarios[]>([]);

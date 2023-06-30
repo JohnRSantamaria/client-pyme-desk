@@ -1,4 +1,5 @@
 import Layout from '@/components/Layout';
+import PedidosComponent from '@/components/pedidos/pedidos';
 import Head from 'next/head';
 import React from 'react';
 
@@ -14,7 +15,7 @@ function Pedidos() {
 			</Head>
 			<main className='flex w-full flex-col items-center justify-center min-h-[calc(100vh-80px)] dark:text-light'>
 				<Layout className='pt-16'>
-					<h1>Pedidos</h1>
+					<PedidosComponent />
 				</Layout>
 			</main>
 		</>

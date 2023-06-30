@@ -1,6 +1,6 @@
 import Layout from '@/components/Layout';
 import SalesSumary from '@/components/sales/SalesSumary';
-import L4 from '@/components/svgs/Loader';
+import LoaderComponent from '@/components/svgs/Loader';
 import { useResumen } from '@/hooks/useResumen';
 import Head from 'next/head';
 
@@ -9,7 +9,7 @@ function Home() {
 
 	return isLoading ? (
 		<div className='flex justify-center items-start w-full h-screen text-white text-3xl text-center'>
-			<L4 />
+			<LoaderComponent />
 		</div>
 	) : (
 		<>

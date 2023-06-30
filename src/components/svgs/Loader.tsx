@@ -1,10 +1,7 @@
+import { svgPropsInterface } from '@/interfaces/svgInterface/loaderInterface';
 import React from 'react';
 
-interface L4SVGProps {
-	className?: string;
-}
-
-const L4: React.FC<L4SVGProps> = ({ className }) => {
+const LoaderComponent: React.FC<svgPropsInterface> = ({ className }) => {
 	return (
 		<svg
 			version='1.0'
@@ -13,7 +10,7 @@ const L4: React.FC<L4SVGProps> = ({ className }) => {
 			height='100px'
 			viewBox='0 0 100 100'
 			preserveAspectRatio='xMidYMid meet'
-			className={`t ${className}`}
+			className={`${className}`}
 		>
 			<circle
 				fill='#fff'
@@ -64,4 +61,4 @@ const L4: React.FC<L4SVGProps> = ({ className }) => {
 	);
 };
 
-export default L4;
+export default LoaderComponent;

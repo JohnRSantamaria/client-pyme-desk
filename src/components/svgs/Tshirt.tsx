@@ -1,10 +1,7 @@
+import { svgPropsInterface } from '@/interfaces/svgInterface/loaderInterface';
 import React from 'react';
 
-interface TshirtSVGProps {
-	className?: string;
-}
-
-const Tshirt: React.FC<TshirtSVGProps> = ({ className }) => {
+const Tshirt: React.FC<svgPropsInterface> = ({ className }) => {
 	return (
 		<svg
 			version='1.0'

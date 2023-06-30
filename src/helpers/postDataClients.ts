@@ -1,4 +1,4 @@
-import { DatosClientesInterface } from '@/interfaces/datosClientesInterface';
+import { DatosClientesInterface } from '@/interfaces/clienteInterface/Clienteprops';
 import axios from 'axios';
 
 export async function enviarDatos(datos: DatosClientesInterface) {

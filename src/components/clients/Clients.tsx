@@ -1,11 +1,11 @@
 import AnimatedText from '../AnimateText';
 import Client from './Client';
-import { Usuarios } from '@/interfaces/fetchUsuariosResponse';
 import DropDownUsers from './DropDownUsers';
 import PaginationNav from '../pagination/PaginationNav';
 import useFetchClientes from '@/hooks/useFetchClientes';
-import L4 from '../svgs/Loader';
+import LoaderComponent from '../svgs/Loader';
 import { useRouter } from 'next/router';
+import { Usuarios } from '@/interfaces/clienteInterface/Clienteprops';
 
 const Clients = () => {
 	const { data, totalPages, currentPage, changePage, setCityFilter, isLoading } =
@@ -29,14 +29,14 @@ const Clients = () => {
 					<article className='flex justify-end items-center w-full h-12 border-b gap-4 pr-4 rounded-1xl border-gray-500 sm:justify-center'>
 						<button
 							onClick={handleClickAddClient}
-							className='bg-white hover:bg-gray-100 text-gray-800 font-normal py-1 px-2 border border-gray-300 rounded shadow dark:bg-zinc-900 dark:text-light dark:hover:bg-zinc-800'
+							className='bg-white hover:bg-gray-100 text-base text-gray-800 font-semibold  py-1 px-2 border border-gray-300 rounded shadow dark:bg-zinc-900 dark:text-light dark:hover:bg-zinc-800'
 						>
-							Agregar cliente
+							Agregar Cliente
 						</button>
 						<DropDownUsers setBuscarCiudad={setCityFilter} />
 					</article>
 					{isLoading ? (
-						<L4 />
+						<LoaderComponent />
 					) : (
 						<article className='grid grid-cols-3 grid-flow-row gap-16 p-8 w-full 2xl:grid-cols-2 md:grid-cols-1 md:'>
 							{Array.isArray(data) &&

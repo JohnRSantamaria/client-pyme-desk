@@ -1,10 +1,7 @@
+import { svgPropsInterface } from '@/interfaces/svgInterface/loaderInterface';
 import React from 'react';
 
-interface SunSVGProps {
-	className?: string;
-}
-
-const Sun: React.FC<SunSVGProps> = ({ className }) => {
+const Sun: React.FC<svgPropsInterface> = ({ className }) => {
 	return (
 		<svg
 			version='1.0'

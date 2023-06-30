@@ -1,9 +1,4 @@
-import React, { ReactNode } from 'react';
-
-interface LayoutProps {
-	children: ReactNode;
-	className?: string;
-}
+import { LayoutProps } from '@/interfaces/customLinkPropsInterface';
 
 const Layout: React.FC<LayoutProps> = ({ children, className = '' }) => {
 	return (

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Usuarios } from '@/interfaces/fetchUsuariosResponse';
+import { Usuarios } from '@/interfaces/clienteInterface/Clienteprops';
 
 export const useUsuarios = () => {
 	const [isLoading, setIsLoading] = useState(true);
