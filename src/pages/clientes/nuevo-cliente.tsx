@@ -5,6 +5,7 @@ import { SelectMenu1 } from '@/components/forms/selectForm';
 import validation from '@/helpers/validation';
 import { DatosUsuario, ErroresValidacion } from '@/types';
 import Swal from 'sweetalert2';
+import { enviarDatos } from '@/helpers/postDataClients';
 
 const Newclient: React.FC = () => {
 	const [value, setValue] = useState<number | string>(0);
@@ -26,10 +27,10 @@ const Newclient: React.FC = () => {
 	const [cityError, setCityError] = React.useState<string | null>(null);
 
 	const [userData, setUserData] = React.useState<DatosUsuario>({
-		Nombre: '',
-		Celular: '',
-		Email: '',
-		Direccion: ''
+		nombre: '',
+		celular: '',
+		correo: '',
+		direccion: ''
 	});
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +47,7 @@ const Newclient: React.FC = () => {
 		);
 	};
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		let erroresDeValidacion = validation(userData);
@@ -73,12 +74,27 @@ const Newclient: React.FC = () => {
 
 		if (esValido) {
 			setUserData(userDataActualizado);
-			Swal.fire({
-				title: 'Usuario Creado Con exito',
-				icon: 'success',
-				confirmButtonColor: '#58E6D9'
-			});
-			console.log(userDataActualizado);
+			try {
+				await enviarDatos(userDataActualizado);
+
+				setUserData({
+					nombre: '',
+					celular: '',
+					correo: '',
+					direccion: ''
+				});
+				Swal.fire({
+					title: 'Usuario Creado Con exito',
+					icon: 'success',
+					confirmButtonColor: '#58E6D9'
+				});
+			} catch (error) {
+				Swal.fire({
+					title: 'Hubo un error intenta de nuevo',
+					icon: 'error',
+					confirmButtonColor: '#58E6D9'
+				});
+			}
 		} else {
 			Swal.fire({
 				title: 'Ingresa todos los datos',
@@ -102,32 +118,32 @@ const Newclient: React.FC = () => {
 						className='flex flex-col justify-center items-center gap-6 mt-6  '
 					>
 						<InputsForms
-							name='Nombre'
+							name='nombre'
 							label='Nombre'
-							value={userData.Nombre}
+							value={userData.nombre}
 							onChange={handleInputChange}
-							error={errors.Nombre}
+							error={errors.nombre}
 						/>
 						<InputsForms
-							name='Celular'
+							name='celular'
 							label='Celular'
-							value={userData.Celular}
+							value={userData.celular}
 							onChange={handleInputChange}
-							error={errors.Celular}
+							error={errors.celular}
 						/>
 						<InputsForms
-							name='Email'
+							name='correo'
 							label='Email'
-							value={userData.Email}
+							value={userData.correo}
 							onChange={handleInputChange}
-							error={errors.Email}
+							error={errors.correo}
 						/>
 						<InputsForms
-							name='Direccion'
+							name='direccion'
 							label='Direccion'
-							value={userData.Direccion}
+							value={userData.direccion}
 							onChange={handleInputChange}
-							error={errors.Direccion}
+							error={errors.direccion}
 						/>
 						<SelectMenu1
 							value={value}
@@ -135,7 +151,7 @@ const Newclient: React.FC = () => {
 							options={cuidades}
 						/>
 
-						<button className='w-[220px] ml-auto bg-zinc-100 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-xl shadow active:relative active:top-[1px] sm:mr-auto mb-4'>
+						<button className='w-[220px] ml-auto bg-zinc-100 hover:bg-gray-100 text-gray-800 font-normal py-2 px-4 border border-gray-400 rounded-xl shadow active:relative active:top-[1px] sm:mr-auto mb-4'>
 							Crear
 						</button>
 					</form>

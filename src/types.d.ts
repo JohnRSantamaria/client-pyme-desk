@@ -22,16 +22,16 @@ export type Ciudad =
 
 export type ResponseType = Usuarios | { Message: string };
 
-type SearchType = number | string;
+export type SearchType = number | string;
 
-type DatosUsuario = {
-	Nombre: string;
-	Celular: string;
-	Email: string;
-	Direccion: string;
+export type DatosUsuario = {
+	nombre: string;
+	celular: string;
+	correo: string;
+	direccion: string;
 	ciudad?: string; // Utilizar 'ciudad' con 'c' minúscula
 };
 
-type ErroresValidacion = {
+export type ErroresValidacion = {
 	[K in keyof DatosUsuario]?: string;
 };

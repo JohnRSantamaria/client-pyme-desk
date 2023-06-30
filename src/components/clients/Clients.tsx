@@ -29,7 +29,7 @@ const Clients = () => {
 					<article className='flex justify-end items-center w-full h-12 border-b gap-4 pr-4 rounded-1xl border-gray-500 sm:justify-center'>
 						<button
 							onClick={handleClickAddClient}
-							className='bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 border border-gray-300 rounded shadow dark:bg-zinc-900 dark:text-light dark:hover:bg-zinc-800'
+							className='bg-white hover:bg-gray-100 text-gray-800 font-normal py-1 px-2 border border-gray-300 rounded shadow dark:bg-zinc-900 dark:text-light dark:hover:bg-zinc-800'
 						>
 							Agregar cliente
 						</button>
