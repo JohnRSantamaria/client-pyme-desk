@@ -1,4 +1,4 @@
-import { Usuarios } from '@/interfaces/fetchUsuariosResponse';
+import { Usuarios } from '@/interfaces/clienteInterface/Clienteprops';
 
 export default function formattingData(usuarios: Usuarios[]): { [key: string]: number } {
 	const cityCounts: { [key: string]: number } = {};
