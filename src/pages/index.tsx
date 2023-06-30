@@ -8,7 +8,7 @@ function Home() {
 	const { isLoading, resumen } = useResumen();
 
 	return isLoading ? (
-		<div className='flex justify-center items-center w-full h-screen text-white text-3xl text-center'>
+		<div className='flex justify-center items-start w-full h-screen text-white text-3xl text-center'>
 			<L4 />
 		</div>
 	) : (

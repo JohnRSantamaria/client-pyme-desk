@@ -96,7 +96,7 @@ const Newclient: React.FC = () => {
 			/>
 
 			<main className='flex flex-col justify-start items-center pt-8 w-full min-h-[calc(100vh-100px)]'>
-				<section className='flex flex-col gap-16  w-3/4  p-8 shadow-lg'>
+				<section className='flex flex-col gap-16  w-3/4  p-8 shadow-lg lg:w-4/5 md:w-[90%] xs:w-[95%] sm:px-4'>
 					<form
 						onSubmit={handleSubmit}
 						className='flex flex-col justify-center items-center gap-6 mt-6  '
@@ -106,24 +106,28 @@ const Newclient: React.FC = () => {
 							label='Nombre'
 							value={userData.Nombre}
 							onChange={handleInputChange}
+							error={errors.Nombre}
 						/>
 						<InputsForms
 							name='Celular'
 							label='Celular'
 							value={userData.Celular}
 							onChange={handleInputChange}
+							error={errors.Celular}
 						/>
 						<InputsForms
 							name='Email'
 							label='Email'
 							value={userData.Email}
 							onChange={handleInputChange}
+							error={errors.Email}
 						/>
 						<InputsForms
 							name='Direccion'
 							label='Direccion'
 							value={userData.Direccion}
 							onChange={handleInputChange}
+							error={errors.Direccion}
 						/>
 						<SelectMenu1
 							value={value}
