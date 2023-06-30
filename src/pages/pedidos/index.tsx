@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout';
-import PedidosComponent from '@/components/pedidos/pedidos';
+import PedidosComponent from '@/components/pedidos/Pedidos';
+
 import Head from 'next/head';
 import React from 'react';
 
