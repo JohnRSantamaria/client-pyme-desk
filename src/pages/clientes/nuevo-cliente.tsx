@@ -1,7 +1,7 @@
 import AnimatedText from '@/components/AnimateText';
 import React, { useState } from 'react';
-import InputsForms from '@/components/forms/InputsForm';
-import { SelectMenu1 } from '@/components/forms/selectForm';
+import InputsForms from '@/components/pagination/forms/InputsForm';
+import { SelectMenu1 } from '@/components/pagination/forms/selectForm';
 import validation from '@/helpers/validation';
 import { DatosUsuario, ErroresValidacion } from '@/types';
 import Swal from 'sweetalert2';
