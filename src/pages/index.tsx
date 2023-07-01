@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout';
 import SalesSumary from '@/components/sales/SalesSumary';
 import LoaderComponent from '@/components/svgs/Loader';
+import SpinLoader from '@/components/svgs/SpinLoader';
 import { useResumen } from '@/hooks/useResumen';
 import Head from 'next/head';
 
@@ -9,7 +10,7 @@ function Home() {
 
 	return isLoading ? (
 		<div className='flex justify-center items-start w-full h-screen text-white text-3xl text-center'>
-			<LoaderComponent />
+			<SpinLoader />
 		</div>
 	) : (
 		<>

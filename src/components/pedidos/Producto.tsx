@@ -1,4 +1,5 @@
 import { ProductoProps } from '@/interfaces/pediosInterface/ProductoPropsInterface';
+import SpinLoader from '../svgs/SpinLoader';
 
 const Producto: React.FC<ProductoProps> = ({ cantidad, producto }) => {
 	return (

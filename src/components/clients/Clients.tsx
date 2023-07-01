@@ -3,9 +3,9 @@ import Client from './Client';
 import DropDownUsers from './DropDownUsers';
 import PaginationNav from '../pagination/PaginationNav';
 import useFetchClientes from '@/hooks/useFetchClientes';
-import LoaderComponent from '../svgs/Loader';
 import { useRouter } from 'next/router';
 import { Usuarios } from '@/interfaces/clienteInterface/Clienteprops';
+import SpinLoader from '../svgs/SpinLoader';
 
 const Clients = () => {
 	const { data, totalPages, currentPage, changePage, setCityFilter, isLoading } =
@@ -36,7 +36,7 @@ const Clients = () => {
 						<DropDownUsers setBuscarCiudad={setCityFilter} />
 					</article>
 					{isLoading ? (
-						<LoaderComponent />
+						<SpinLoader />
 					) : (
 						<article className='grid grid-cols-3 grid-flow-row gap-16 p-8 w-full 2xl:grid-cols-2 md:grid-cols-1'>
 							{Array.isArray(data) &&

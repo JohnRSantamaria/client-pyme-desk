@@ -3,7 +3,7 @@ import AnimatedText from '../AnimateText';
 import useFetchOrders from '@/hooks/useFetchOrders';
 import PaginationNav from '../pagination/PaginationNav';
 import Pedido from './Pedido';
-import LoaderComponent from '../svgs/Loader';
+import SpinLoader from '../svgs/SpinLoader';
 
 const PedidosComponent = () => {
 	const {
@@ -29,7 +29,7 @@ const PedidosComponent = () => {
 			<main className='flex flex-col justify-between items-center w-full min-h-[calc(100vh-200px)] '>
 				<section className='flex flex-col justify-between items-center w-full min-h-[500px] auto border-light dark:border-white shadow-2xl'>
 					{isLoading ? (
-						<LoaderComponent />
+						<SpinLoader />
 					) : (
 						<article className='grid grid-cols-1 place-items-center grid-flow-row gap-16 p-8 w-full '>
 							{data.map((order) => (
