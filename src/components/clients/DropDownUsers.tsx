@@ -2,6 +2,7 @@ import { FC, Fragment, MouseEvent } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { DropDownUsersProps } from '@/interfaces/clienteInterface/Clienteprops';
+import { useState } from 'react';
 
 const ciudades = [
 	'',
@@ -24,9 +25,11 @@ function classNames(...classes: string[]) {
 }
 
 const DropDownUsers: FC<DropDownUsersProps> = ({ setBuscarCiudad }) => {
+	const [ciudad, setCiudad] = useState<string>('');
 	const handleClickCities = (event: MouseEvent<HTMLSpanElement>) => {
 		const ciudad = event.currentTarget.getAttribute('data-ciudad') || '';
 		setBuscarCiudad(ciudad);
+		setCiudad(ciudad);
 	};
 
 	return (
@@ -36,7 +39,7 @@ const DropDownUsers: FC<DropDownUsersProps> = ({ setBuscarCiudad }) => {
 		>
 			<div>
 				<Menu.Button className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:text-light dark:bg-dark dark:hover:bg-zinc-800'>
-					Cuidades
+					{ciudad === '' ? <p>Cuidades</p> : ciudad}
 					<ChevronDownIcon
 						className='-mr-1 h-5 w-5 text-primary dark:text-primaryDark'
 						aria-hidden='true'

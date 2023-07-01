@@ -57,3 +57,24 @@ export type PedidoType = {
 	productos_nombres: string[];
 	cliente_nombre: string;
 };
+
+export type PropiedadesPedido = {
+	id: number | undefined;
+	productos: TipoPedido['productos'];
+	fecha: TipoPedido['fecha'];
+	estado: TipoPedido['estado'];
+	pagado: TipoPedido['pagado'];
+	regla_envio: TipoPedido['regla_envio'];
+	observaciones: TipoPedido['observaciones'];
+	cliente: TipoPedido['cliente'];
+	productos_nombres: TipoPedido['productos_nombres'];
+	cliente_nombre: TipoPedido['cliente_nombre'];
+	open: boolean;
+	toogle: () => void;
+};
+
+export type TipoProducto = {
+	id: number;
+	cantidad: number;
+	producto: number | string;
+};

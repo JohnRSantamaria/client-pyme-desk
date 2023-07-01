@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AnimatedText from '../AnimateText';
 import useFetchOrders from '@/hooks/useFetchOrders';
 import PaginationNav from '../pagination/PaginationNav';
 import Pedido from './Pedido';
 import SpinLoader from '../svgs/SpinLoader';
+import { PropiedadesPedido } from '@/types';
 
-const PedidosComponent = () => {
+const PedidosComponent: React.FC<PropiedadesPedido> = () => {
 	const {
 		changePage,
 		setIdFilter,
@@ -19,6 +20,15 @@ const PedidosComponent = () => {
 		totalPages
 	} = useFetchOrders();
 
+	const [open, setOpen] = useState<number | false>(false);
+
+	const toogle = (index: number) => {
+		if (open === index) {
+			return setOpen(false);
+		}
+		setOpen(index);
+	};
+
 	return (
 		<>
 			<AnimatedText
@@ -31,10 +41,11 @@ const PedidosComponent = () => {
 					{isLoading ? (
 						<SpinLoader />
 					) : (
-						<article className='grid grid-cols-1 place-items-center grid-flow-row gap-16 p-8 w-full '>
+						<article className='grid grid-cols-1 place-items-center grid-flow-row gap-16 px-80 py-4 w-full 2xl:px-56 xl:px-40 lg:px-20 md:px-12 sm:px-2'>
 							{data.map((order) => (
 								<Pedido
 									key={order.id}
+									id={order.id}
 									productos={order.productos}
 									fecha={order.fecha}
 									estado={order.estado}
@@ -44,19 +55,14 @@ const PedidosComponent = () => {
 									cliente={order.cliente}
 									productos_nombres={order.productos_nombres}
 									cliente_nombre={order.cliente_nombre}
+									open={open === order.id}
+									toogle={() => order.id !== undefined && toogle(order.id)}
 								/>
 							))}
 						</article>
 					)}
-					<button
-						onClick={() => {
-							setIdFilter(6);
-						}}
-					>
-						Click para enviar
-					</button>
 				</section>
-				<footer className='mb-2'>
+				<footer className='my-2'>
 					<PaginationNav
 						gotoPage={changePage}
 						canPreviousPage={currentPage > 1}

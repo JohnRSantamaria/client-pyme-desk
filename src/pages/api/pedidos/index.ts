@@ -12,8 +12,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 			cliente = '0'
 		} = req.query;
 
-		console.log(req.query);
-
 		const pageParam = parseInt(page as string, 10);
 		const idParam = parseInt(id as string, 10);
 		const clienteParam = parseInt(cliente as string, 10);
@@ -46,9 +44,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 			if (clienteParam) {
 				url += `&cliente=${clienteParam}`;
 			}
-
-			console.log(url);
-
 			const response = await axios.get(url);
 
 			res.status(200).json(response.data);

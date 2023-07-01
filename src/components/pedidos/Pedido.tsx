@@ -1,9 +1,15 @@
 import { convertirFechaHora } from '@/helpers/convertirFechaHora';
-import { PedidoType } from '@/types';
+import { PropiedadesPedido, TipoProducto } from '@/types';
 import Producto from './Producto';
 import Observaciones from './Observaciones';
+import { BsCaretDownFill } from 'react-icons/bs';
+import { BsCaretUpFill } from 'react-icons/bs';
+import { BiMoneyWithdraw } from 'react-icons/bi';
+import { MdPeople } from 'react-icons/md';
+import { Collapse } from 'react-collapse';
 
-const Pedido: React.FC<PedidoType> = ({
+const Pedido: React.FC<PropiedadesPedido> = ({
+	id,
 	productos,
 	fecha,
 	estado,
@@ -12,49 +18,64 @@ const Pedido: React.FC<PedidoType> = ({
 	observaciones,
 	cliente,
 	productos_nombres,
-	cliente_nombre
+	cliente_nombre,
+	open = false,
+	toogle
 }) => {
 	for (let i = 0; i < productos.length && i < productos_nombres.length; i++) {
 		productos[i].producto = productos_nombres[i];
 	}
 
 	return (
-		<div className='w-full border'>
+		<div
+			className='w-full p-2 shadow-sm'
+			onClick={toogle}
+		>
 			<header className='flex justify-between items-center'>
-				<span className='Capitalize cursor-pointer text-primary dark:text-primaryDark'>
-					{cliente_nombre}: {cliente}
-				</span>
-				<span className='select-none'>{convertirFechaHora(fecha)}</span>
+				<section className='flex justify-center items-center gap-2 Capitalize cursor-pointer text-primary dark:text-primaryDark'>
+					<span>
+						<MdPeople />
+					</span>
+					<span>{cliente_nombre}</span>
+				</section>
+				<section className='flex select-none'>
+					<span className='sm:hidden'>{convertirFechaHora(fecha)}</span>
+					<span className='px-2 text-primary dark:text-primaryDark'>
+						{open ? <BsCaretUpFill /> : <BsCaretDownFill />}
+					</span>
+				</section>
 			</header>
-			<section className='flex flex-col bg-zinc-800'>
-				<h2>Productos</h2>
-				{productos.map((product) => (
-					<Producto
-						key={product.id}
-						cantidad={product.cantidad}
-						producto={product.producto}
+			<Collapse isOpened={open}>
+				<section className='flex flex-col'>
+					{productos.map((product: TipoProducto) => (
+						<Producto
+							key={product.id}
+							cantidad={product.cantidad}
+							producto={product.producto}
+						/>
+					))}
+				</section>
+				{observaciones && (
+					<Observaciones
+						key={crypto.randomUUID()}
+						observaciones={observaciones}
 					/>
-				))}
-			</section>
-			{observaciones && (
-				<Observaciones
-					key={crypto.randomUUID()}
-					observaciones={observaciones}
-				/>
-			)}
+				)}
+			</Collapse>
 			<footer className='flex flex-row  justify-between items-center '>
-				<span className='flex gap-2'>
-					Pagó:
+				<span className='flex items-center gap-2'>
 					{pagado ? (
-						<p className='text-green-600 font-semibold'>Si</p>
+						<p className='text-green-600 font-semibold'>
+							<BiMoneyWithdraw />
+						</p>
 					) : (
-						<p className='text-red-600 font-semibold'>No</p>
+						<p className='text-red-600 font-semibold'>
+							<BiMoneyWithdraw />
+						</p>
 					)}
 				</span>
 				<span className='flex gap-2'>
-					<span>Estado:</span>
 					<span>{estado}</span>
-					<span>Regla de envio:</span>
 					<span>{regla_envio}</span>
 				</span>
 			</footer>
