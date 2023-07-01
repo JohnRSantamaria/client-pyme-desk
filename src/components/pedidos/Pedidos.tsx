@@ -36,7 +36,7 @@ const PedidosComponent: React.FC = () => {
 			/>
 
 			<main className='flex flex-col justify-between items-center w-full min-h-[calc(100vh-200px)] '>
-				<section className='flex flex-col justify-between items-center w-full min-h-[500px] auto border-light dark:border-white shadow-2xl'>
+				<section className='flex flex-col justify-start items-center w-full min-h-[500px] auto border-light dark:border-white shadow-2xl border'>
 					<header className='w-full'>
 						<Filters />
 					</header>

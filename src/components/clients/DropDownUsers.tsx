@@ -1,8 +1,11 @@
-import { FC, Fragment, MouseEvent } from 'react';
+import { FC, Fragment, MouseEvent, use } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { DropDownUsersProps } from '@/interfaces/clienteInterface/Clienteprops';
 import { useState } from 'react';
+//Context
+import { ClientesContext } from '@/context/ClientesContext';
+import { useContext } from 'react';
 
 const ciudades = [
 	'',
@@ -26,10 +29,14 @@ function classNames(...classes: string[]) {
 
 const DropDownUsers: FC<DropDownUsersProps> = ({ setBuscarCiudad }) => {
 	const [ciudad, setCiudad] = useState<string>('');
+
+	const { pageNumber, setPageNumber } = useContext(ClientesContext);
+
 	const handleClickCities = (event: MouseEvent<HTMLSpanElement>) => {
 		const ciudad = event.currentTarget.getAttribute('data-ciudad') || '';
 		setBuscarCiudad(ciudad);
 		setCiudad(ciudad);
+		setPageNumber(1);
 	};
 
 	return (

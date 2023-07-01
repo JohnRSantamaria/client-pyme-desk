@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import Button from './Button';
-import { checkTargetForNewValues } from 'framer-motion';
 
 interface PageLinksProps {
 	pageCount: number;

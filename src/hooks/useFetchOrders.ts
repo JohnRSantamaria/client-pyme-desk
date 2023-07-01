@@ -21,16 +21,13 @@ const useFetchOrders = (
 	const [estadoFilter, setEstadoFilter] = useState<
 		'' | 'pendiente' | 'en ruta' | 'entregado' | 'cancelado'
 	>(initialEstadoFilter as '' | 'pendiente' | 'en ruta' | 'entregado' | 'cancelado');
-	// const [pagadoFilter, setPagadoFilter] = useState<boolean | string>(initialPagadoFilter);
-	const [reglaEnvioFilter, setReglaEnvioFilter] = useState<'' | 'domicilio' | 'recoge'>(
-		initialReglaEnvioFilter as '' | 'domicilio' | 'recoge'
-	);
 	const [clienteFilter, setClienteFilter] = useState<string | number>(
 		initialclienteFilter
 	);
 
 	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const { pagadoFilter, setPagadoFilter } = useContext(PedidoContext);
+	const { pagadoFilter, setPagadoFilter, reglaEnvioFilter, setReglaEnvioFilter } =
+		useContext(PedidoContext);
 
 	useEffect(() => {
 		const fetchData = async (pageNumber: number, resetPage: boolean = false) => {
@@ -54,7 +51,7 @@ const useFetchOrders = (
 
 		fetchData(currentPage, IdFilter !== '');
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [currentPage, IdFilter, pagadoFilter]);
+	}, [currentPage, IdFilter, pagadoFilter, reglaEnvioFilter]);
 
 	const changePage = (pageIndex: number) => {
 		setCurrentPage(pageIndex + 1);

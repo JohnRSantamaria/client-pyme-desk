@@ -27,11 +27,11 @@ const Pedido: React.FC<PropiedadesPedido> = ({
 	}
 
 	return (
-		<div
-			className='w-full p-2 shadow-sm'
-			onClick={toogle}
-		>
-			<header className='flex justify-between items-center'>
+		<div className='w-full p-2 shadow-sm'>
+			<header
+				onClick={toogle}
+				className='flex justify-between items-center'
+			>
 				<section className='flex justify-center items-center gap-2 Capitalize cursor-pointer text-primary dark:text-primaryDark'>
 					<span>
 						<MdPeople />
@@ -63,7 +63,11 @@ const Pedido: React.FC<PropiedadesPedido> = ({
 				)}
 			</Collapse>
 			<footer className='flex flex-row  justify-between items-center '>
-				<span className='flex items-center gap-2'>
+				<span className='flex gap-2'>
+					<span>{estado}</span>
+					<span>{regla_envio}</span>
+				</span>
+				<span className='flex items-center gap-2 mx-2'>
 					{pagado ? (
 						<p className='text-green-600 font-semibold'>
 							<BiMoneyWithdraw />
@@ -73,10 +77,6 @@ const Pedido: React.FC<PropiedadesPedido> = ({
 							<BiMoneyWithdraw />
 						</p>
 					)}
-				</span>
-				<span className='flex gap-2'>
-					<span>{estado}</span>
-					<span>{regla_envio}</span>
 				</span>
 			</footer>
 		</div>
