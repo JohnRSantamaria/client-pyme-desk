@@ -38,7 +38,7 @@ const Clients = () => {
 					{isLoading ? (
 						<LoaderComponent />
 					) : (
-						<article className='grid grid-cols-3 grid-flow-row gap-16 p-8 w-full 2xl:grid-cols-2 md:grid-cols-1 md:'>
+						<article className='grid grid-cols-3 grid-flow-row gap-16 p-8 w-full 2xl:grid-cols-2 md:grid-cols-1'>
 							{Array.isArray(data) &&
 								data.map((user: Usuarios) => {
 									return (

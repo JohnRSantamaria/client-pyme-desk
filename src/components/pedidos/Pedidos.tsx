@@ -31,11 +31,10 @@ const PedidosComponent = () => {
 					{isLoading ? (
 						<LoaderComponent />
 					) : (
-						<article>
+						<article className='grid grid-cols-1 place-items-center grid-flow-row gap-16 p-8 w-full '>
 							{data.map((order) => (
 								<Pedido
 									key={order.id}
-									id={order.id}
 									productos={order.productos}
 									fecha={order.fecha}
 									estado={order.estado}

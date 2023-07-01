@@ -42,11 +42,11 @@ export type Ciudad = (typeof ciudades)[number];
 // Types para pedido
 
 export type PedidoType = {
-	id: number;
+	id?: number;
 	productos: {
 		id: number;
 		cantidad: number;
-		producto: number;
+		producto: number | string;
 	}[];
 	fecha: string;
 	estado: string;
