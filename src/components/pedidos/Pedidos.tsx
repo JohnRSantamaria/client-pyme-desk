@@ -6,7 +6,7 @@ import Pedido from './Pedido';
 import SpinLoader from '../svgs/SpinLoader';
 import { PropiedadesPedido } from '@/types';
 
-const PedidosComponent: React.FC<PropiedadesPedido> = () => {
+const PedidosComponent: React.FC = () => {
 	const {
 		changePage,
 		setIdFilter,
