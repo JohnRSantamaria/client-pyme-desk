@@ -4,7 +4,7 @@ import useFetchOrders from '@/hooks/useFetchOrders';
 import PaginationNav from '../pagination/PaginationNav';
 import Pedido from './Pedido';
 import SpinLoader from '../svgs/SpinLoader';
-import { PropiedadesPedido } from '@/types';
+import { Filters } from './Filters';
 
 const PedidosComponent: React.FC = () => {
 	const {
@@ -12,7 +12,6 @@ const PedidosComponent: React.FC = () => {
 		setIdFilter,
 		setClienteFilter,
 		setEstadoFilter,
-		setPagadoFilter,
 		setReglaEnvioFilter,
 		currentPage,
 		data,
@@ -38,6 +37,9 @@ const PedidosComponent: React.FC = () => {
 
 			<main className='flex flex-col justify-between items-center w-full min-h-[calc(100vh-200px)] '>
 				<section className='flex flex-col justify-between items-center w-full min-h-[500px] auto border-light dark:border-white shadow-2xl'>
+					<header className='w-full'>
+						<Filters />
+					</header>
 					{isLoading ? (
 						<SpinLoader />
 					) : (

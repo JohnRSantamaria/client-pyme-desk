@@ -7,6 +7,9 @@ import Head from 'next/head';
 import Footer from '@/components/Footer';
 import { NavBar } from '@/components/NavBar';
 
+//context
+import { PedidoProvider } from '@/context/PedidoContext';
+
 const montserrat = Montserrat({
 	subsets: ['latin'],
 	variable: '--font-mont'
@@ -14,7 +17,7 @@ const montserrat = Montserrat({
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
-		<>
+		<PedidoProvider>
 			<Head>
 				<meta
 					name='viewport'
@@ -32,6 +35,6 @@ export default function App({ Component, pageProps }: AppProps) {
 				<Component {...pageProps} />
 				<Footer />
 			</main>
-		</>
+		</PedidoProvider>
 	);
 }

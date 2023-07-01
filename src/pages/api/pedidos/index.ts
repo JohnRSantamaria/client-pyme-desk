@@ -17,6 +17,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		const clienteParam = parseInt(cliente as string, 10);
 		const pagadoParam = pagado === 'true' ? true : pagado === 'false' ? false : undefined;
 
+		console.log(pagadoParam);
+
 		try {
 			let url = `https://server-pyme-desk.onrender.com/api/pedidos/?page=${pageParam}`;
 
@@ -44,6 +46,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 			if (clienteParam) {
 				url += `&cliente=${clienteParam}`;
 			}
+
+			console.log(url);
 			const response = await axios.get(url);
 
 			res.status(200).json(response.data);

@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { PedidoType } from '@/types';
+//Context
+import { PedidoContext } from '@/context/PedidoContext';
+import { useContext } from 'react';
 
 const useFetchOrders = (
 	initialPage = 1,
@@ -18,7 +21,7 @@ const useFetchOrders = (
 	const [estadoFilter, setEstadoFilter] = useState<
 		'' | 'pendiente' | 'en ruta' | 'entregado' | 'cancelado'
 	>(initialEstadoFilter as '' | 'pendiente' | 'en ruta' | 'entregado' | 'cancelado');
-	const [pagadoFilter, setPagadoFilter] = useState<boolean | string>(initialPagadoFilter);
+	// const [pagadoFilter, setPagadoFilter] = useState<boolean | string>(initialPagadoFilter);
 	const [reglaEnvioFilter, setReglaEnvioFilter] = useState<'' | 'domicilio' | 'recoge'>(
 		initialReglaEnvioFilter as '' | 'domicilio' | 'recoge'
 	);
@@ -27,6 +30,7 @@ const useFetchOrders = (
 	);
 
 	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const { pagadoFilter, setPagadoFilter } = useContext(PedidoContext);
 
 	useEffect(() => {
 		const fetchData = async (pageNumber: number, resetPage: boolean = false) => {
@@ -50,7 +54,7 @@ const useFetchOrders = (
 
 		fetchData(currentPage, IdFilter !== '');
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [currentPage, IdFilter]);
+	}, [currentPage, IdFilter, pagadoFilter]);
 
 	const changePage = (pageIndex: number) => {
 		setCurrentPage(pageIndex + 1);
