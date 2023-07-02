@@ -11,7 +11,7 @@ const Button: React.FC<ButtonProps> = ({ content, onClick, active, disabled }) =
 			}
       ${
 				!disabled
-					? ' bg-white text-[#F056C7] hover:bg-primary hover:text-zinc-50 dark:hover:bg-primaryDark'
+					? ' bg-white text-primary hover:bg-primary hover:text-zinc-50 dark:hover:bg-primaryDark'
 					: 'text-zinc-200 dark:text-zinc-400 bg-slate-300 dark:bg-slate-600 cursor-not-allowed'
 			}
       `}

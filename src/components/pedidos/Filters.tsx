@@ -7,9 +7,11 @@ import DropDownPedidos from './DropDownPedidos';
 import DropDownEstado from './DropDownEstado';
 
 import { BsFillHandbagFill } from 'react-icons/bs';
+import { useRouter } from 'next/router';
 
 export const Filters = () => {
 	const [isOpen, setIsOpen] = useState(false);
+	const router = useRouter();
 	const {
 		pagadoFilter,
 		setPagadoFilter,
@@ -28,6 +30,10 @@ export const Filters = () => {
 		}
 	};
 
+	const handleNewOreder = () => {
+		router.push('pedidos/nuevo-pedido');
+	};
+
 	//Filtros
 	const handlePaymentClick = () => {
 		setCurrentPage(1);
@@ -38,7 +44,10 @@ export const Filters = () => {
 		<header className='flex flex-col justify-center w-full gap-2'>
 			<main className='flex justify-end gap-4 items-center text-3xl mr-2'>
 				<div>
-					<button className='flex justify-center items-center gap-1 bg-transparent hover:bg-gray-100 text-base text-gray-800 font-semibold  py-1 px-2 rounded shadow dark:text-light dark:hover:bg-zinc-800 hover:text-primary dark:hover:text-primaryDark'>
+					<button
+						onClick={handleNewOreder}
+						className='flex justify-center items-center gap-1 bg-white hover:bg-gray-100 text-base text-gray-800 font-semibold  py-1 px-2 border border-gray-300 rounded shadow dark:bg-zinc-900 dark:text-light dark:hover:bg-zinc-800'
+					>
 						Agregar <BsFillHandbagFill />
 					</button>
 				</div>
@@ -50,14 +59,13 @@ export const Filters = () => {
 				</div>
 			</main>
 			<Collapse isOpened={isOpen}>
-				<section className='flex justify-end flex-wrap items-center p-2 gap-2 border-y border-zinc-400 xs:flex-col xs:items-end '>
+				<section className='flex justify-end items-center flex-wrap gap-2 border-zinc-400 xs:flex-col xs:items-end'>
+					{/* pago */}
 					<span
 						onClick={handlePaymentClick}
-						className='cursor-pointer'
+						className='flex justify-center items-center gap-1 bg-white hover:bg-gray-100 text-base text-gray-800 font-semibold  py-1 px-2 border border-gray-300 rounded shadow dark:bg-zinc-900 dark:text-light dark:hover:bg-zinc-800'
 					>
-						<span className='border-1 ring-1 ring-zinc-300 py-2 px-3 rounded-md bg-white dark:bg-dark hover:bg-zinc-100 dark:hover:bg-zinc-800 font-semibold shadow'>
-							{pagadoFilter ? 'Pagados' : 'Sin Pago'}
-						</span>
+						{pagadoFilter ? 'Pagados' : 'Sin Pago'}
 					</span>
 					{/* reglas de envios */}
 					<span className='cursor-pointer'>

@@ -7,17 +7,7 @@ import SpinLoader from '../svgs/SpinLoader';
 import { Filters } from './Filters';
 
 const PedidosComponent: React.FC = () => {
-	const {
-		changePage,
-		setIdFilter,
-		setClienteFilter,
-		setEstadoFilter,
-		setReglaEnvioFilter,
-		currentPage,
-		data,
-		isLoading,
-		totalPages
-	} = useFetchOrders();
+	const { changePage, currentPage, data, isLoading, totalPages } = useFetchOrders();
 
 	const [open, setOpen] = useState<number | false>(false);
 
