@@ -4,7 +4,6 @@ const PedidoNuevoForm = () => {
 	const { usuarios } = useUsuarios();
 
 	console.log(usuarios);
-
 	return (
 		<main className='flex flex-col justify-start items-center pt-8 w-full min-h-[calc(100vh-100px)] '>
 			<section className='flex flex-col gap-16  w-3/4  p-8 shadow-lg lg:w-4/5 md:w-[90%] xs:w-[95%] sm:px-4'>
