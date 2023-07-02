@@ -6,16 +6,12 @@ import { PedidoContext } from '@/context/PedidoContext';
 import { useContext } from 'react';
 
 const useFetchOrders = (
-	initialPage = 1,
 	initialIdFilter = '',
 	initialEstadoFilter = '',
-	initialPagadoFilter = '',
-	initialReglaEnvioFilter = '',
 	initialclienteFilter = ''
 ) => {
 	const [data, setData] = useState<PedidoType[]>([]);
 	const [totalPages, setTotalPages] = useState<number>(1);
-	const [currentPage, setCurrentPage] = useState<number>(initialPage);
 
 	const [IdFilter, setIdFilter] = useState<string | number>(initialIdFilter);
 	const [estadoFilter, setEstadoFilter] = useState<
@@ -26,16 +22,19 @@ const useFetchOrders = (
 	);
 
 	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const { pagadoFilter, setPagadoFilter, reglaEnvioFilter, setReglaEnvioFilter } =
-		useContext(PedidoContext);
+	const {
+		pagadoFilter,
+		setPagadoFilter,
+		reglaEnvioFilter,
+		setReglaEnvioFilter,
+		currentPage,
+		setCurrentPage
+	} = useContext(PedidoContext);
 
 	useEffect(() => {
-		const fetchData = async (pageNumber: number, resetPage: boolean = false) => {
+		const fetchData = async (pageNumber: number) => {
 			setIsLoading(true);
-			if (resetPage) {
-				pageNumber = 1;
-				setCurrentPage(1);
-			}
+
 			try {
 				const response = await axios.get(
 					`/api/pedidos?page=${pageNumber}&id=${IdFilter}&estado=${estadoFilter}&pagado=${pagadoFilter}&regla_envio=${reglaEnvioFilter}&cliente=${clienteFilter}`
@@ -49,7 +48,7 @@ const useFetchOrders = (
 			}
 		};
 
-		fetchData(currentPage, IdFilter !== '');
+		fetchData(currentPage);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentPage, IdFilter, pagadoFilter, reglaEnvioFilter]);
 

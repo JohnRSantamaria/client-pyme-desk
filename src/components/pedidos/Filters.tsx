@@ -3,10 +3,11 @@ import { BsFilterRight } from 'react-icons/bs';
 import { PedidoContext } from '@/context/PedidoContext';
 import { useContext, useState } from 'react';
 import { Collapse } from 'react-collapse';
+import DropDownReglasEnvio from './DropDownPedidos';
 
 export const Filters = () => {
 	const [isOpen, setIsOpen] = useState(false);
-	const { pagadoFilter, setPagadoFilter, reglaEnvioFilter, setReglaEnvioFilter } =
+	const { pagadoFilter, setPagadoFilter, setReglaEnvioFilter, setCurrentPage } =
 		useContext(PedidoContext);
 
 	const handleFilterClick = () => {
@@ -14,16 +15,14 @@ export const Filters = () => {
 		if (isOpen) {
 			setPagadoFilter('');
 			setReglaEnvioFilter('');
+			setCurrentPage(1);
 		}
 	};
 
-	console.log(reglaEnvioFilter);
 	//Filtros
 	const handlePaymentClick = () => {
+		setCurrentPage(1);
 		setPagadoFilter(!pagadoFilter);
-	};
-	const handleShippingRule = () => {
-		setReglaEnvioFilter('domicilio');
 	};
 
 	return (
@@ -42,11 +41,9 @@ export const Filters = () => {
 					>
 						{pagadoFilter ? <p>Pagados</p> : <p>Sin Pago</p>}
 					</span>
-					<span
-						onClick={handleShippingRule}
-						className='cursor-pointer'
-					>
-						regla_de_envio
+					{/* reglas de envios */}
+					<span className='cursor-pointer'>
+						<DropDownReglasEnvio setReglaEnvioFilter={setReglaEnvioFilter} />
 					</span>
 				</section>
 			</Collapse>

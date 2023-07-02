@@ -44,7 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 			if (clienteParam) {
 				url += `&cliente=${clienteParam}`;
 			}
-
+			console.log(url);
 			const response = await axios.get(url);
 
 			res.status(200).json(response.data);
