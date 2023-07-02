@@ -41,15 +41,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 	} else if (method === 'PATCH') {
 		const { id } = query;
 		const { estado } = req.body;
-
 		try {
 			const url = `https://server-pyme-desk.onrender.com/api/pedidos/${id}`;
-			const response = await axios.patch(url, { estado });
-
-			console.log(response.data);
+			await axios.patch(url, { estado });
 			res.status(200).json({ message: 'Solicitud PATCH enviada con éxito.' });
 		} catch (error: unknown) {
-			console.error(error);
 			res.status(500).json({ error: 'Error al enviar la solicitud PATCH.' });
 		}
 	} else {

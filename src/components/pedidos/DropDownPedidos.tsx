@@ -68,7 +68,7 @@ const DropDownPedidos: FC<DropDownReglasEnvioProps> = ({ setReglaEnvioFilter }) 
 											'block px-4 py-2 text-sm cursor-pointer'
 										)}
 									>
-										{regla === '' ? <p>Todas</p> : regla}
+										{regla === '' ? <p>Todas</p> : <p className='capitalize'>{regla}</p>}
 									</span>
 								)}
 							</Menu.Item>

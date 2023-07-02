@@ -1,10 +1,11 @@
 //https://server-pyme-desk.onrender.com/api/pedidos/29
 import { useState } from 'react';
 import axios from 'axios';
+import { Estado } from '@/types';
 
 type UpdatePedidoParams = {
-	id: string;
-	estado: string;
+	id: number | undefined;
+	estado: Estado;
 };
 
 const useUpdatePedido = () => {

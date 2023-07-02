@@ -78,3 +78,5 @@ export type TipoProducto = {
 	cantidad: number;
 	producto: number | string;
 };
+
+export type Estado = 'pendiente' | 'en ruta' | 'entregado' | 'cancelado' | '';

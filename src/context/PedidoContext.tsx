@@ -17,6 +17,10 @@ interface PedidoContextProps {
 	setEstadoFilter: React.Dispatch<
 		React.SetStateAction<'' | 'pendiente' | 'en ruta' | 'entregado' | 'cancelado'>
 	>;
+	paramEstadoFilter: '' | 'pendiente' | 'en ruta' | 'entregado' | 'cancelado';
+	setParamEstadoFilter: React.Dispatch<
+		React.SetStateAction<'' | 'pendiente' | 'en ruta' | 'entregado' | 'cancelado'>
+	>;
 }
 
 export const PedidoContext = createContext<PedidoContextProps>({
@@ -27,7 +31,9 @@ export const PedidoContext = createContext<PedidoContextProps>({
 	currentPage: 1,
 	setCurrentPage: () => {},
 	estadoFilter: '',
-	setEstadoFilter: () => {}
+	setEstadoFilter: () => {},
+	paramEstadoFilter: '',
+	setParamEstadoFilter: () => {}
 });
 
 export const PedidoProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -39,6 +45,10 @@ export const PedidoProvider: React.FC<{ children: ReactNode }> = ({ children }) 
 	const [estadoFilter, setEstadoFilter] = useState<
 		'' | 'pendiente' | 'en ruta' | 'entregado' | 'cancelado'
 	>('');
+	const [paramEstadoFilter, setParamEstadoFilter] = useState<
+		'' | 'pendiente' | 'en ruta' | 'entregado' | 'cancelado'
+	>('');
+
 	return (
 		<PedidoContext.Provider
 			value={{
@@ -49,7 +59,9 @@ export const PedidoProvider: React.FC<{ children: ReactNode }> = ({ children }) 
 				currentPage,
 				setCurrentPage,
 				estadoFilter,
-				setEstadoFilter
+				setEstadoFilter,
+				paramEstadoFilter,
+				setParamEstadoFilter
 			}}
 		>
 			{children}

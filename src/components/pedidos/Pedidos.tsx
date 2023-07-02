@@ -43,7 +43,7 @@ const PedidosComponent: React.FC = () => {
 					{isLoading ? (
 						<SpinLoader />
 					) : (
-						<article className='grid grid-cols-1 place-items-center grid-flow-row gap-16 px-80 py-4 w-full 2xl:px-56 xl:px-40 lg:px-20 md:px-12 sm:px-2'>
+						<article className='grid grid-cols-1 place-items-center grid-flow-row gap-8 px-80 py-4 w-full 2xl:px-56 xl:px-40 lg:px-20 md:px-12 sm:px-2'>
 							{data.map((order) => (
 								<Pedido
 									key={order.id}
