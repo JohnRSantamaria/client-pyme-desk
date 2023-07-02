@@ -3,18 +3,25 @@ import { BsFilterRight } from 'react-icons/bs';
 import { PedidoContext } from '@/context/PedidoContext';
 import { useContext, useState } from 'react';
 import { Collapse } from 'react-collapse';
-import DropDownReglasEnvio from './DropDownPedidos';
+import DropDownPedidos from './DropDownPedidos';
+import DropDownEstado from './DropDownEstado';
 
 export const Filters = () => {
 	const [isOpen, setIsOpen] = useState(false);
-	const { pagadoFilter, setPagadoFilter, setReglaEnvioFilter, setCurrentPage } =
-		useContext(PedidoContext);
+	const {
+		pagadoFilter,
+		setPagadoFilter,
+		setReglaEnvioFilter,
+		setCurrentPage,
+		setEstadoFilter
+	} = useContext(PedidoContext);
 
 	const handleFilterClick = () => {
 		setIsOpen(!isOpen);
 		if (isOpen) {
 			setPagadoFilter('');
 			setReglaEnvioFilter('');
+			setEstadoFilter('');
 			setCurrentPage(1);
 		}
 	};
@@ -34,7 +41,7 @@ export const Filters = () => {
 				<BsFilterRight />
 			</section>
 			<Collapse isOpened={isOpen}>
-				<section className='flex justify-center p-2 gap-2'>
+				<section className='flex justify-center items-center p-2 gap-2 border'>
 					<span
 						onClick={handlePaymentClick}
 						className='cursor-pointer'
@@ -43,7 +50,11 @@ export const Filters = () => {
 					</span>
 					{/* reglas de envios */}
 					<span className='cursor-pointer'>
-						<DropDownReglasEnvio setReglaEnvioFilter={setReglaEnvioFilter} />
+						<DropDownPedidos setReglaEnvioFilter={setReglaEnvioFilter} />
+					</span>
+					{/* estado */}
+					<span className='cursor-pointer'>
+						<DropDownEstado setEstadoFilter={setEstadoFilter} />
 					</span>
 				</section>
 			</Collapse>

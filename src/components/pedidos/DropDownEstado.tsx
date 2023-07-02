@@ -4,29 +4,35 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid';
 //Context
 import { PedidoContext } from '@/context/PedidoContext';
 
-const reglas = ['', 'recoge', 'domicilio'] as const;
+const estados = ['', 'pendiente', 'en ruta', 'entregado', 'cancelado'] as const;
 
-type Reglas = (typeof reglas)[number];
+type Estados = (typeof estados)[number];
 
 function classNames(...classes: string[]) {
 	return classes.filter(Boolean).join(' ');
 }
 
-interface DropDownReglasEnvioProps {
-	setReglaEnvioFilter: React.Dispatch<React.SetStateAction<'' | 'domicilio' | 'recoge'>>;
+interface DropDownEstadosProps {
+	setEstadoFilter: React.Dispatch<
+		React.SetStateAction<'' | 'pendiente' | 'en ruta' | 'entregado' | 'cancelado'>
+	>;
 }
 
-const DropDownPedidos: FC<DropDownReglasEnvioProps> = ({ setReglaEnvioFilter }) => {
-	const [regla, setRegla] = useState<string>('');
+const DropDownEstado: FC<DropDownEstadosProps> = ({ setEstadoFilter }) => {
+	const [estado, setEstado] = useState<string>('');
 	const { setCurrentPage } = useContext(PedidoContext);
 
 	const handleClickCities = (event: MouseEvent<HTMLSpanElement>) => {
-		const regla =
-			(event.currentTarget.getAttribute('data-regla') as '' | 'recoge' | 'domicilio') ||
-			'';
+		const estado =
+			(event.currentTarget.getAttribute('data-estado') as
+				| ''
+				| 'pendiente'
+				| 'en ruta'
+				| 'entregado'
+				| 'cancelado') || '';
 		setCurrentPage(1);
-		setReglaEnvioFilter(regla);
-		setRegla(regla);
+		setEstadoFilter(estado);
+		setEstado(estado);
 	};
 
 	return (
@@ -36,7 +42,7 @@ const DropDownPedidos: FC<DropDownReglasEnvioProps> = ({ setReglaEnvioFilter }) 
 		>
 			<div>
 				<Menu.Button className='inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:text-light dark:bg-dark dark:hover:bg-zinc-800'>
-					{regla === '' ? <p>Envio</p> : regla}
+					{estado === '' ? <p>Estado</p> : estado}
 					<ChevronDownIcon
 						className='-mr-1 h-5 w-5 text-primary dark:text-primaryDark'
 						aria-hidden='true'
@@ -55,11 +61,11 @@ const DropDownPedidos: FC<DropDownReglasEnvioProps> = ({ setReglaEnvioFilter }) 
 			>
 				<Menu.Items className='absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-zinc-800'>
 					<div className='py-1'>
-						{reglas.map((regla: Reglas, index: number) => (
-							<Menu.Item key={regla + index}>
+						{estados.map((estado: Estados, index: number) => (
+							<Menu.Item key={estado + index}>
 								{({ active }) => (
 									<span
-										data-regla={regla}
+										data-estado={estado}
 										onClick={handleClickCities}
 										className={classNames(
 											active
@@ -68,7 +74,7 @@ const DropDownPedidos: FC<DropDownReglasEnvioProps> = ({ setReglaEnvioFilter }) 
 											'block px-4 py-2 text-sm cursor-pointer'
 										)}
 									>
-										{regla === '' ? <p>Todas</p> : regla}
+										{estado === '' ? <p>Todos</p> : estado}
 									</span>
 								)}
 							</Menu.Item>
@@ -79,4 +85,4 @@ const DropDownPedidos: FC<DropDownReglasEnvioProps> = ({ setReglaEnvioFilter }) 
 		</Menu>
 	);
 };
-export default DropDownPedidos;
+export default DropDownEstado;

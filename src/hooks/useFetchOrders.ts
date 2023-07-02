@@ -14,9 +14,6 @@ const useFetchOrders = (
 	const [totalPages, setTotalPages] = useState<number>(1);
 
 	const [IdFilter, setIdFilter] = useState<string | number>(initialIdFilter);
-	const [estadoFilter, setEstadoFilter] = useState<
-		'' | 'pendiente' | 'en ruta' | 'entregado' | 'cancelado'
-	>(initialEstadoFilter as '' | 'pendiente' | 'en ruta' | 'entregado' | 'cancelado');
 	const [clienteFilter, setClienteFilter] = useState<string | number>(
 		initialclienteFilter
 	);
@@ -28,7 +25,9 @@ const useFetchOrders = (
 		reglaEnvioFilter,
 		setReglaEnvioFilter,
 		currentPage,
-		setCurrentPage
+		setCurrentPage,
+		estadoFilter,
+		setEstadoFilter
 	} = useContext(PedidoContext);
 
 	useEffect(() => {
@@ -50,7 +49,7 @@ const useFetchOrders = (
 
 		fetchData(currentPage);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [currentPage, IdFilter, pagadoFilter, reglaEnvioFilter]);
+	}, [currentPage, IdFilter, pagadoFilter, reglaEnvioFilter, estadoFilter]);
 
 	const changePage = (pageIndex: number) => {
 		setCurrentPage(pageIndex + 1);

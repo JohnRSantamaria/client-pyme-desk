@@ -7,6 +7,8 @@ import { BsCaretUpFill } from 'react-icons/bs';
 import { BiMoneyWithdraw } from 'react-icons/bi';
 import { MdPeople } from 'react-icons/md';
 import { Collapse } from 'react-collapse';
+import useUpdatePedido from '@/hooks/usePatchPedidos';
+import { useCallback } from 'react';
 
 const Pedido: React.FC<PropiedadesPedido> = ({
 	id,
@@ -25,6 +27,16 @@ const Pedido: React.FC<PropiedadesPedido> = ({
 	for (let i = 0; i < productos.length && i < productos_nombres.length; i++) {
 		productos[i].producto = productos_nombres[i];
 	}
+
+	const { updatePedido, loading, error } = useUpdatePedido();
+
+	const handleSubmit = useCallback(async () => {
+		const result = await updatePedido({ id: 'some-id', estado: 'en ruta' });
+
+		if (result) {
+			console.log('Pedido actualizado con éxito');
+		}
+	}, [updatePedido]);
 
 	return (
 		<div className='w-full p-2 shadow-sm'>
@@ -65,6 +77,7 @@ const Pedido: React.FC<PropiedadesPedido> = ({
 			<footer className='flex flex-row  justify-between items-center '>
 				<span className='flex gap-2'>
 					<span>{estado}</span>
+
 					<span>{regla_envio}</span>
 				</span>
 				<span className='flex items-center gap-2 mx-2'>

@@ -16,7 +16,7 @@ interface DropDownReglasEnvioProps {
 	setReglaEnvioFilter: React.Dispatch<React.SetStateAction<'' | 'domicilio' | 'recoge'>>;
 }
 
-const DropDownPedidos: FC<DropDownReglasEnvioProps> = ({ setReglaEnvioFilter }) => {
+const DropDownPedido: FC<DropDownReglasEnvioProps> = ({ setReglaEnvioFilter }) => {
 	const [regla, setRegla] = useState<string>('');
 	const { setCurrentPage } = useContext(PedidoContext);
 
@@ -79,4 +79,4 @@ const DropDownPedidos: FC<DropDownReglasEnvioProps> = ({ setReglaEnvioFilter }) 
 		</Menu>
 	);
 };
-export default DropDownPedidos;
+export default DropDownPedido;
