@@ -71,7 +71,7 @@ const DEstado: FC<DropDownEstadosProps> = ({ paramEstado, id }) => {
 			className='relative inline-block text-left'
 		>
 			<div>
-				<Menu.Button className='inline-flex w-full justify-center rounded-md bg-white py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-transparent hover:bg-gray-50 dark:text-light dark:bg-dark dark:hover:bg-zinc-800'>
+				<Menu.Button className='inline-flex w-full justify-center rounded-md bg-slate-100 dark:bg-zinc-900 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-transparent hover:bg-gray-50 dark:text-light dark:hover:bg-zinc-800'>
 					<span className='capitalize'>{paramEstado}</span>
 					<ChevronDownIcon
 						className='-mr-1 h-5 w-5 text-primary dark:text-primaryDark'

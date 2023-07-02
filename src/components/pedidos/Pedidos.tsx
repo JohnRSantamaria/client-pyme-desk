@@ -35,13 +35,15 @@ const PedidosComponent: React.FC = () => {
 				className='!text-6xl !text-center xl:!text-5xl lg:!text-center lg:!text=6xl md:!text-5xl sm:!text-3xl'
 			/>
 
-			<main className='flex flex-col justify-between items-center w-full min-h-[calc(100vh-200px)] '>
-				<section className='flex flex-col justify-start items-center w-full min-h-[500px] auto border-light dark:border-white shadow-2xl border'>
-					<header className='w-full'>
+			<main className='flex flex-col justify-between items-center w-full min-h-[calc(100vh-200px)]'>
+				<section className='flex flex-col justify-start items-center w-full min-h-[500px] auto shadow-xl sm:shadow-lg'>
+					<header className='grid grid-cols-1 place-items-end grid-flow-row gap-8 px-80 py-4 w-full 2xl:px-56 xl:px-40 lg:px-20 md:px-12 sm:px-2'>
 						<Filters />
 					</header>
 					{isLoading ? (
-						<SpinLoader />
+						<section className=' flex items-center justify-center w-full mt-8'>
+							<SpinLoader />
+						</section>
 					) : (
 						<article className='grid grid-cols-1 place-items-center grid-flow-row gap-8 px-80 py-4 w-full 2xl:px-56 xl:px-40 lg:px-20 md:px-12 sm:px-2'>
 							{data.map((order) => (
@@ -64,7 +66,7 @@ const PedidosComponent: React.FC = () => {
 						</article>
 					)}
 				</section>
-				<footer className='my-2'>
+				<footer className='mb-2 mt-4'>
 					<PaginationNav
 						gotoPage={changePage}
 						canPreviousPage={currentPage > 1}

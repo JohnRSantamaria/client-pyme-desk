@@ -14,7 +14,7 @@ export const NavBar = () => {
 				<nav className='flex items-center justify-between'>
 					<CustomLink
 						href='/'
-						title='Home'
+						title='Inicio'
 						className='mr-4'
 					/>
 					<CustomLink

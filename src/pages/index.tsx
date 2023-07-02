@@ -14,7 +14,7 @@ function Home() {
 	) : (
 		<>
 			<Head>
-				<title>Home Pyme Desk | Panel de metricas</title>
+				<title>Inicio Pyme Desk | Panel de metricas</title>
 				<meta
 					name='description'
 					content='Consulte las métricas de resumen en nuestra página de inicio, incluyendo datos de ventas, pedidos y rendimiento de su negocio.'

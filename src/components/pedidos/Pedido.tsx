@@ -135,7 +135,7 @@ import { Estado, PropiedadesPedido, TipoProducto } from '@/types';
 import Producto from './Producto';
 import Observaciones from './Observaciones';
 import { BsCaretDownFill, BsCaretUpFill } from 'react-icons/bs';
-import { BiMoneyWithdraw } from 'react-icons/bi';
+import { BsCurrencyDollar } from 'react-icons/bs';
 import { MdPeople } from 'react-icons/md';
 import { Collapse } from 'react-collapse';
 import DEstado from './pedidoDropDowns/DEstado';
@@ -150,7 +150,6 @@ const Pedido: React.FC<PropiedadesPedido> = ({
 	pagado,
 	regla_envio,
 	observaciones,
-	cliente,
 	productos_nombres,
 	cliente_nombre,
 	open = false,
@@ -164,7 +163,7 @@ const Pedido: React.FC<PropiedadesPedido> = ({
 	);
 
 	return (
-		<div className='w-full p-2 shadow-sm'>
+		<div className='w-full p-2 shadow-md dark:shadow-lg rounded-md '>
 			<header
 				onClick={toogle}
 				className='flex justify-between items-center'
@@ -184,6 +183,7 @@ const Pedido: React.FC<PropiedadesPedido> = ({
 			</header>
 			<Collapse isOpened={open}>
 				<section className='flex flex-col'>
+					<h3>Pedido: </h3>
 					{modifiedProductos.map((product: TipoProducto) => (
 						<Producto
 							key={product.id}
@@ -208,8 +208,12 @@ const Pedido: React.FC<PropiedadesPedido> = ({
 					<span>{regla_envio}</span>
 				</span>
 				<span className='flex items-center gap-2 mx-2'>
-					<p className={`font-semibold ${pagado ? 'text-green-600' : 'text-red-600'}`}>
-						<BiMoneyWithdraw />
+					<p
+						className={`flex justify-center items-center font-semibold ${
+							pagado ? 'text-green-600' : 'text-red-600'
+						}`}
+					>
+						<BsCurrencyDollar />
 					</p>
 				</span>
 			</footer>

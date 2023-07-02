@@ -1,4 +1,3 @@
-import React, { useCallback } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Button from './Button';
 import { PaginationNavProps } from '@/interfaces/paginationNavProps';

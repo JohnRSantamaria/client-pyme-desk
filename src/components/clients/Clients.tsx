@@ -7,6 +7,8 @@ import { useRouter } from 'next/router';
 import { Usuarios } from '@/interfaces/clienteInterface/Clienteprops';
 import SpinLoader from '../svgs/SpinLoader';
 
+import { BsFillPersonFill } from 'react-icons/bs';
+
 const Clients = () => {
 	const { data, totalPages, currentPage, changePage, setCityFilter, isLoading } =
 		useFetchClientes();
@@ -25,18 +27,20 @@ const Clients = () => {
 			/>
 
 			<main className='flex flex-col justify-between items-center w-full min-h-[calc(100vh-200px)] '>
-				<section className='flex flex-col justify-start items-center w-full min-h-[500px] auto pt-2 border-light dark:border-dark shadow-2xl'>
-					<article className='flex justify-end items-center w-full h-12 border-b gap-4 pr-4 rounded-1xl border-gray-500 sm:justify-center'>
+				<section className='flex flex-col justify-start items-center w-full min-h-[500px] auto pt-2 border-light dark:border-dark shadow-xl'>
+					<article className='flex justify-end items-center w-full h-12 border-b gap-4 pr-4 rounded-1xl border-gray-500 sm:justify-evenly'>
 						<button
 							onClick={handleClickAddClient}
-							className='bg-white hover:bg-gray-100 text-base text-gray-800 font-semibold  py-1 px-2 border border-gray-300 rounded shadow dark:bg-zinc-900 dark:text-light dark:hover:bg-zinc-800'
+							className='flex justify-center items-center gap-1 bg-white hover:bg-gray-100 text-base text-gray-800 font-semibold  py-1 px-2 border border-gray-300 rounded shadow dark:bg-zinc-900 dark:text-light dark:hover:bg-zinc-800'
 						>
-							Agregar Cliente
+							Agregar <BsFillPersonFill />
 						</button>
 						<DropDownUsers setBuscarCiudad={setCityFilter} />
 					</article>
 					{isLoading ? (
-						<SpinLoader />
+						<section className=' flex items-center justify-center w-full mt-8'>
+							<SpinLoader />
+						</section>
 					) : (
 						<article className='grid grid-cols-3 grid-flow-row gap-16 p-8 w-full 2xl:grid-cols-2 md:grid-cols-1'>
 							{Array.isArray(data) &&
