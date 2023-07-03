@@ -1,3 +1,11 @@
+//Clientes Types
+export interface SalesItemsProps {
+	title: string;
+	data: string | number;
+	children: ReactNode;
+}
+
+/**  */
 export type ChartData = {
 	labels: string[];
 	datasets: {

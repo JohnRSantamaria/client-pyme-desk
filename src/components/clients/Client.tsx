@@ -1,16 +1,9 @@
 import { ClientProps, FieldsProps } from '@/interfaces/clienteInterface/Clienteprops';
-
-const FieldsClient: React.FC<FieldsProps> = ({ data, title }) => {
-	return (
-		<div>
-			<span className='text-primary dark:text-primaryDark'>{title}</span> {data}
-		</div>
-	);
-};
+import FieldsClient from './FieldsClients';
 
 const Client: React.FC<ClientProps> = ({ user }) => {
 	return (
-		<div className='rounded-lg p-2'>
+		<div className='p-2'>
 			<FieldsClient
 				data={user.nombre}
 				title={'Nombre:'}

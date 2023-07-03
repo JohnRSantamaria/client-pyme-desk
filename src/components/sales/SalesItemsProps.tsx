@@ -1,10 +1,4 @@
-import { ReactNode } from 'react';
-
-interface SalesItemsProps {
-	title: string;
-	data: string | number;
-	children: ReactNode;
-}
+import { SalesItemsProps } from '@/types';
 
 const SalesItems: React.FC<SalesItemsProps> = ({ title, data, children }) => {
 	return (

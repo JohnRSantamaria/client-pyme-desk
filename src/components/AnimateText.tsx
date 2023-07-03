@@ -31,7 +31,7 @@ const singelWord = {
 
 const AnimatedText: React.FC<CustomLinkInterface> = ({ text, className = '' }) => {
 	return (
-		<div
+		<header
 			className='w-full mx-auto py-2 flex items-center justify-center text-center
     overflow-hidden 
     '
@@ -54,7 +54,7 @@ const AnimatedText: React.FC<CustomLinkInterface> = ({ text, className = '' }) =
 					</motion.span>
 				))}
 			</motion.h1>
-		</div>
+		</header>
 	);
 };
 
