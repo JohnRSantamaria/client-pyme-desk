@@ -12,11 +12,14 @@ import useOptionsPedidos from '@/hooks/useOptionsPedidos';
 import { useFormValidation } from '@/hooks/useFormValidation';
 //Sweet Alert
 import Swal from 'sweetalert2';
+import { Collapse } from 'react-collapse';
+import { usePostPedidos } from '@/hooks/usePostPedidos';
 
 const PedidoNuevoForm = () => {
 	const { usuarios } = useUsuarios();
 	const { productos } = useFetchProductos();
 	const { productoOptions, usuarioOptions } = useOptionsPedidos(usuarios, productos);
+	const { enviar } = usePostPedidos();
 	const { errors, handleSubmit } = useFormValidation();
 
 	const [valueUsuario, setValueUsuario] = useState<number | string>(0);
@@ -25,7 +28,7 @@ const PedidoNuevoForm = () => {
 	const [pagochecked, setPagoChecked] = useState(false);
 
 	const [pedidoData, setPedidoData] = useState<DatosPedidos>({
-		cantidad: 0,
+		cantidad: '',
 		observaciones: ''
 	});
 
@@ -41,7 +44,7 @@ const PedidoNuevoForm = () => {
 		const cantidad = Number(pedidoData.cantidad);
 
 		handleSubmit(valueUsuario, valueRegla, valueProducto, cantidad, (data) => {
-			console.log(data);
+			enviar(data);
 			Swal.fire({
 				icon: 'success',
 				title: 'Enviado con exito'
@@ -51,18 +54,20 @@ const PedidoNuevoForm = () => {
 			setValueRegla(0);
 			setPagoChecked(false);
 			setPedidoData({
-				cantidad: 0,
+				cantidad: '',
 				observaciones: ''
 			});
 		});
 	};
+
+	console.log();
 
 	return (
 		<main className='flex flex-col justify-start items-center pt-8 w-full min-h-[calc(100vh-100px)] '>
 			<section className='flex flex-col gap-16 w-3/4 p-8 shadow-lg lg:w-4/5 md:w-[90%] xs:w-[95%] sm:px-4'>
 				<form
 					onSubmit={handleFormSubmit}
-					className='flex flex-col justify-center items-center gap-6 mt-6'
+					className='flex flex-col justify-center items-baseline gap-6 mt-6'
 				>
 					<SelectMenu1
 						value={valueUsuario}
@@ -113,21 +118,22 @@ const PedidoNuevoForm = () => {
 						value={pedidoData.observaciones}
 						onChange={handleInputChange}
 					/>
-					<button className='w-[220px] ml-auto bg-zinc-100 hover:bg-gray-100 text-gray-800 font-normal py-2 px-4 border border-gray-400 rounded-xl shadow active:relative active:top-[1px] sm:mr-auto mb-4'>
+					<button className='flex justify-center items-center w-[220px] ml-auto bg-zinc-100 hover:bg-gray-100 text-gray-800 font-normal py-2 px-4 border border-gray-400 rounded-xl shadow active:relative active:top-[1px] sm:mr-auto mb-4'>
 						Crear
 					</button>
-
-					<article className='flex flex-col w-full text-black dark:text-white gap-2 '>
-						<h3>Errores</h3>
-						{errors.map((error, index) => (
-							<div
-								key={index}
-								className='border rounded-lg px-2 border-zinc-700 '
-							>
-								{error.message}
-							</div>
-						))}
-					</article>
+					<Collapse isOpened={!!errors.length}>
+						<article className='flex flex-col w-full text-black dark:text-white gap-2 '>
+							<h3>Errores</h3>
+							{errors.map((error, index) => (
+								<div
+									key={index}
+									className='border rounded-lg px-2 border-zinc-700 '
+								>
+									{error.message}
+								</div>
+							))}
+						</article>
+					</Collapse>
 				</form>
 			</section>
 		</main>
