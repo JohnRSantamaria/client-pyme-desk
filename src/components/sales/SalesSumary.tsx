@@ -1,5 +1,4 @@
 import AnimatedText from '../AnimateText';
-import { Resumen } from '@/interfaces/fetchResumenResponse';
 import Tshirt from '../svgs/Tshirt';
 import Customer from '../svgs/Customer';
 import Money from '../svgs/Money';
@@ -7,14 +6,18 @@ import Truck from '../svgs/Truck';
 import CityScape from '../svgs/CityScape';
 import SalesItems from './SalesItemsProps';
 import BarsPrueva from '../Charts/BarChart';
+import { useResumen } from '@/hooks/useResumen';
+import SpinLoader from '../svgs/SpinLoader';
 
-interface SalesSumaryProps {
-	resumen?: Resumen;
-}
+const SalesSumary = () => {
+	const { resumen } = useResumen();
 
-const SalesSumary: React.FC<SalesSumaryProps> = ({ resumen }) => {
 	if (!resumen) {
-		return <div>Resumen no disponible</div>;
+		return (
+			<section className='flex justify-center items-center '>
+				<SpinLoader />
+			</section>
+		);
 	}
 
 	const {
@@ -33,7 +36,7 @@ const SalesSumary: React.FC<SalesSumaryProps> = ({ resumen }) => {
 					className='!text-6xl !text-center xl:!text-5xl lg:!text-center lg:!text=6xl md:!text-5xl sm:!text-3xl'
 				/>
 			</header>
-			<section className='flex flex-col justify-evenly items-center w-full auto pt-16 border border-light dark:border-dark shadow-2xl'>
+			<section className='flex flex-col w-full auto pt-16 shadow-2xl mb-16'>
 				<article className='grid grid-cols-3 grid-flow-row place-items-center gap-y-16 gap-x-2  2xl:grid-cols-2 lg:grid-cols-1 md:pb-16'>
 					<SalesItems
 						title={'Número de pedidos'}
@@ -70,7 +73,7 @@ const SalesSumary: React.FC<SalesSumaryProps> = ({ resumen }) => {
 						<Tshirt className='text-primary dark:text-primaryDark' />
 					</SalesItems>
 				</article>
-				<article className='flex items-center justify-center w-full h-auto p-48 2xl:p-32 lg:p-8 sm:hidden'>
+				<article className='flex items-start justify-center w-full h-auto py-8 px-48 2xl:px-32 lg:px-8 md:px-8 sm:px-8 xs:hidden'>
 					<BarsPrueva />
 				</article>
 			</section>

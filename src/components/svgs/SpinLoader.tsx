@@ -1,7 +1,10 @@
 import React from 'react';
 import { svgPropsInterface } from '@/interfaces/svgInterface/loaderInterface';
 
-const SpinLoader: React.FC<svgPropsInterface> = ({ className, stopColor = '#fff' }) => {
+const SpinLoader: React.FC<svgPropsInterface> = ({
+	className,
+	stopColor = '#C0C0C0'
+}) => {
 	return (
 		<svg
 			version='1.0'
