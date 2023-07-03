@@ -80,3 +80,12 @@ export type TipoProducto = {
 };
 
 export type Estado = 'pendiente' | 'en ruta' | 'entregado' | 'cancelado' | '';
+// Pedido Types
+export type DatosPedidos = {
+	cantidad: string | number;
+	observaciones: string;
+};
+export type OptionPedidosTypes = {
+	id: number;
+	caption: string;
+};

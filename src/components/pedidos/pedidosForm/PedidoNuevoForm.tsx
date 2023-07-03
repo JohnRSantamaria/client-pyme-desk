@@ -1,101 +1,74 @@
+import React, { useState } from 'react';
 import Checkbox from '@/components/formComponents/Checkboxes';
 import InputsForms from '@/components/pagination/forms/InputsForm';
 import InputFormIcon from '@/components/pagination/forms/inputFromIcons';
 import { SelectMenu1 } from '@/components/pagination/forms/selectForm';
 import { useFetchProductos } from '@/hooks/useFectchProductos';
 import { useUsuarios } from '@/hooks/useUsuarios';
-import { useEffect, useState } from 'react';
-//Icons
 import { BsCartCheck } from 'react-icons/bs';
-
-const reglaDeEvioOptions = [
-	{ id: 0, caption: 'Selecione metodo de envío' },
-	{ id: 1, caption: 'domicilio' },
-	{ id: 2, caption: 'recoge' }
-];
+import { DatosPedidos } from '@/types';
+import { reglaDeEvioOptions } from './data';
+import useOptionsPedidos from '@/hooks/useOptionsPedidos';
+import { useFormValidation } from '@/hooks/useFormValidation';
+//Sweet Alert
+import Swal from 'sweetalert2';
 
 const PedidoNuevoForm = () => {
-	type UsuarioOption = {
-		id: number;
-		caption: string;
-	};
-
-	type ProductoOption = {
-		id: number;
-		caption: string;
-	};
-
 	const { usuarios } = useUsuarios();
 	const { productos } = useFetchProductos();
-	const [usuarioOptions, setUsuarioOptions] = useState<UsuarioOption[]>([]);
-	const [productoOptions, setProductoOptions] = useState<ProductoOption[]>([]);
+	const { productoOptions, usuarioOptions } = useOptionsPedidos(usuarios, productos);
+	const { errors, handleSubmit } = useFormValidation();
+
 	const [valueUsuario, setValueUsuario] = useState<number | string>(0);
 	const [valueProducto, setValueProducto] = useState<number | string>(0);
 	const [valueRegla, setValueRegla] = useState<number | string>(0);
 	const [pagochecked, setPagoChecked] = useState(false);
 
-	useEffect(() => {
-		// Para usuarios
-		if (Array.isArray(usuarios)) {
-			const usuarioOptions = [
-				{ id: 0, caption: 'Seleccione al usuario' },
-				...usuarios.map((usuario: any) => ({
-					id: usuario.id,
-					caption: usuario.nombre
-				}))
-			];
-			setUsuarioOptions(usuarioOptions);
-		}
+	const [pedidoData, setPedidoData] = useState<DatosPedidos>({
+		cantidad: 0,
+		observaciones: ''
+	});
 
-		// Para productos
-		if (Array.isArray(productos)) {
-			const productoOptions = [
-				{ id: 0, caption: 'Seleccione un producto' },
-				...(productos as any[]).map((producto: any) => ({
-					id: producto.id,
-					caption: producto.nombre
-				}))
-			];
-			setProductoOptions(productoOptions);
-		}
-	}, [usuarios, productos]);
+	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setPedidoData({
+			...pedidoData,
+			[e.target.name]: e.target.value
+		});
+	};
 
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+	const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		/**{
-			"cliente": 5,
-			"estado": "pendiente",
-			"regla_envio": "domicilio",
-			"pagado": true,
-			"productos": [
-				{
-					"producto": 5,
-					"cantidad": 2
-				},
-				{
-					"producto": 6,
-					"cantidad": 1
-				}
-			],
-			"observaciones":"Buen producto"
-		} */
-		console.log(valueUsuario);
-		console.log(valueProducto);
+		const cantidad = Number(pedidoData.cantidad);
+
+		handleSubmit(valueUsuario, valueRegla, valueProducto, cantidad, (data) => {
+			console.log(data);
+			Swal.fire({
+				icon: 'success',
+				title: 'Enviado con exito'
+			});
+			setValueUsuario(0);
+			setValueProducto(0);
+			setValueRegla(0);
+			setPagoChecked(false);
+			setPedidoData({
+				cantidad: 0,
+				observaciones: ''
+			});
+		});
 	};
 
 	return (
 		<main className='flex flex-col justify-start items-center pt-8 w-full min-h-[calc(100vh-100px)] '>
-			<section className='flex flex-col gap-16  w-3/4  p-8 shadow-lg lg:w-4/5 md:w-[90%] xs:w-[95%] sm:px-4'>
+			<section className='flex flex-col gap-16 w-3/4 p-8 shadow-lg lg:w-4/5 md:w-[90%] xs:w-[95%] sm:px-4'>
 				<form
-					onSubmit={handleSubmit}
-					className='flex flex-col justify-center items-center gap-6 mt-6  '
+					onSubmit={handleFormSubmit}
+					className='flex flex-col justify-center items-center gap-6 mt-6'
 				>
 					<SelectMenu1
 						value={valueUsuario}
 						setValue={setValueUsuario}
 						options={usuarioOptions}
 					/>
-
 					<span className='w-full flex flex-row flex-nowrap justify-between items-center gap-2 sm:flex-wrap'>
 						<span className='w-full'>
 							<SelectMenu1
@@ -112,10 +85,11 @@ const PedidoNuevoForm = () => {
 								decoration={<BsCartCheck size='1rem' />}
 								inputClassName='rounded-xl '
 								decorationClassName='dark:bg-white text-zinc-900 border-zinc-400 rounded-xl'
+								value={pedidoData.cantidad}
+								onChange={handleInputChange}
 							/>
 						</span>
 					</span>
-
 					<span className='w-full flex flex-row flex-nowrap justify-between items-center gap-2 sm:flex-wrap'>
 						<span className='w-full'>
 							<SelectMenu1
@@ -133,15 +107,27 @@ const PedidoNuevoForm = () => {
 							/>
 						</span>
 					</span>
-
 					<InputsForms
 						label='Observaciones'
 						name='observaciones'
+						value={pedidoData.observaciones}
+						onChange={handleInputChange}
 					/>
-
 					<button className='w-[220px] ml-auto bg-zinc-100 hover:bg-gray-100 text-gray-800 font-normal py-2 px-4 border border-gray-400 rounded-xl shadow active:relative active:top-[1px] sm:mr-auto mb-4'>
 						Crear
 					</button>
+
+					<article className='flex flex-col w-full text-black dark:text-white gap-2 '>
+						<h3>Errores</h3>
+						{errors.map((error, index) => (
+							<div
+								key={index}
+								className='border rounded-lg px-2 border-zinc-700 '
+							>
+								{error.message}
+							</div>
+						))}
+					</article>
 				</form>
 			</section>
 		</main>
