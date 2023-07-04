@@ -10,13 +10,22 @@ import { useResumen } from '@/hooks/useResumen';
 import SpinLoader from '../svgs/SpinLoader';
 
 const SalesSumary = () => {
-	const { resumen } = useResumen();
+	const { resumen, error } = useResumen();
 
 	if (!resumen) {
 		return (
 			<section className='flex justify-center items-center '>
 				<SpinLoader />
 			</section>
+		);
+	}
+
+	if (error) {
+		return (
+			<p>
+				El servidor no esta diponible en este momento por favor espere uno minutos y
+				recarge la pagina
+			</p>
 		);
 	}
 
