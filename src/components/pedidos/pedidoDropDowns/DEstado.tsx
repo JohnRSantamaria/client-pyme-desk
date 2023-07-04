@@ -49,7 +49,7 @@ const DEstado: FC<DropDownEstadosProps> = ({ paramEstado, id }) => {
 			cancelButtonColor: CANCEL_BUTTON_COLOR,
 			confirmButtonText: 'Si, Cambiala!',
 			cancelButtonText: 'Cancelar'
-		}).then((result) => {
+		}).then(async (result) => {
 			if (result.isConfirmed) {
 				Swal.fire({
 					title: 'Cambiada',
@@ -58,7 +58,7 @@ const DEstado: FC<DropDownEstadosProps> = ({ paramEstado, id }) => {
 					confirmButtonColor: CONFIRM_BUTTON_COLOR,
 					background: BACK_GROUND_COLOR
 				});
-				updatePedido({ id, estado: estado });
+				await updatePedido({ id, estado: estado });
 				setCurrentPage(1);
 				setEstadoFilter(estado);
 			}

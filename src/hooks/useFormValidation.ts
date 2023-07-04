@@ -20,6 +20,8 @@ export const useFormValidation = () => {
 			valueRegla: number | string,
 			valueProducto: number | string,
 			cantidad: number,
+			pagochecked: boolean,
+			observaciones: string,
 			onSuccess: (data: FormData) => void
 		) => {
 			const { errors, isValid } = validaciones(
@@ -38,9 +40,9 @@ export const useFormValidation = () => {
 					cliente: valueUsuario,
 					estado: 'pendiente',
 					regla_envio: valueRegla === 1 ? 'domicilio' : 'recoge',
-					pagado: false,
+					pagado: pagochecked,
 					productos: nuevoProducto,
-					observaciones: ''
+					observaciones: observaciones
 				};
 
 				onSuccess(data);

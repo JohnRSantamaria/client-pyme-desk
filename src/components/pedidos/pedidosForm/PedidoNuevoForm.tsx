@@ -43,22 +43,30 @@ const PedidoNuevoForm = () => {
 	const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const cantidad = Number(pedidoData.cantidad);
-
-		handleSubmit(valueUsuario, valueRegla, valueProducto, cantidad, (data) => {
-			enviar(data);
-			Swal.fire({
-				icon: 'success',
-				title: 'Enviado con exito'
-			});
-			setValueUsuario(0);
-			setValueProducto(0);
-			setValueRegla(0);
-			setPagoChecked(false);
-			setPedidoData({
-				cantidad: '',
-				observaciones: ''
-			});
-		});
+		const observaciones = pedidoData.observaciones;
+		handleSubmit(
+			valueUsuario,
+			valueRegla,
+			valueProducto,
+			cantidad,
+			pagochecked,
+			observaciones,
+			async (data) => {
+				await enviar(data);
+				Swal.fire({
+					icon: 'success',
+					title: 'Enviado con exito'
+				});
+				setValueUsuario(0);
+				setValueProducto(0);
+				setValueRegla(0);
+				setPagoChecked(false);
+				setPedidoData({
+					cantidad: '',
+					observaciones: ''
+				});
+			}
+		);
 	};
 
 	return (
