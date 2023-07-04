@@ -33,10 +33,10 @@ const InputFormIcon: FC<InputFromIconProps> = ({
 				aria-label={label}
 				min={0}
 				max={10}
-				className={`peer block w-full py-3 px-3 text-gray-600 bg-white border border-gray-400 focus:outline-none focus:ring-0 appearance-none rounded-tl-none rounded-bl-none rounded transition-colors duration-300 ${inputClassName}`}
+				className={`peer block w-full py-3 px-3 text-zinc-800 dark:text-zinc-200 bg-white focus:outline-none focus:ring-0 appearance-none rounded-tl-none rounded-bl-none rounded transition-colors duration-300 ${inputClassName}`}
 			/>
 			<div
-				className={`flex items-center rounded-tr-none rounded-br-none rounded px-3 py-3 text-gray-600 border border-gray-400 border-r-0 ${decorationClassName}`}
+				className={`flex items-center rounded-tr-none bg-white border-r-[1px] border-zinc-300 rounded-br-none rounded px-3 py-3  text-zinc-200 ${decorationClassName}`}
 			>
 				{decoration}
 			</div>

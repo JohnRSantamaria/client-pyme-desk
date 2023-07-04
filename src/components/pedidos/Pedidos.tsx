@@ -4,7 +4,7 @@ import useFetchOrders from '@/hooks/useFetchOrders';
 import PaginationNav from '../pagination/PaginationNav';
 import Pedido from './Pedido';
 import SpinLoader from '../svgs/SpinLoader';
-import { Filters } from './Filters';
+import Filters from './Filters';
 
 const PedidosComponent: React.FC = () => {
 	const { changePage, currentPage, data, isLoading, totalPages } = useFetchOrders();
@@ -24,9 +24,8 @@ const PedidosComponent: React.FC = () => {
 				text='Nuestros Pedidos'
 				className='!text-6xl !text-center xl:!text-5xl lg:!text-center lg:!text=6xl md:!text-5xl sm:!text-3xl'
 			/>
-
-			<main className='flex flex-col justify-between items-center w-full min-h-[calc(100vh-200px)]'>
-				<section className='flex flex-col justify-start items-center w-full min-h-[500px] auto shadow-xl sm:shadow-lg'>
+			<section className='flex flex-col justify-between items-center w-full'>
+				<section className='flex flex-col justify-start items-center w-full min-h-[calc(100vh-240px)] shadow-lg'>
 					<header className='grid grid-cols-1 place-items-end grid-flow-row gap-8 px-80 py-4 w-full 2xl:px-56 xl:px-40 lg:px-20 md:px-12 sm:px-2'>
 						<Filters />
 					</header>
@@ -65,7 +64,7 @@ const PedidosComponent: React.FC = () => {
 						pageIndex={currentPage - 1}
 					/>
 				</footer>
-			</main>
+			</section>
 		</>
 	);
 };

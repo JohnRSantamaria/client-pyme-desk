@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import AnimatedText from '../AnimateText';
-import InputsForms from '../pagination/forms/InputsForm';
+import InputsForms from '../formComponents/InputsForm';
 import validation from '@/helpers/validation';
 import { DatosUsuario, ErroresValidacion } from '@/types';
 import { cuidades } from '@/components/clients/data';
 import { enviarDatos } from '@/helpers/postDataClients';
-import { SelectMenu1 } from '../pagination/forms/selectForm';
+import { SelectMenu1 } from '../formComponents/selectForm';
 import Swal from 'sweetalert2';
 
 const FormNuevoCliente = () => {

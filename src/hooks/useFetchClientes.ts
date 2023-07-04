@@ -5,7 +5,7 @@ import { Usuarios } from '@/interfaces/clienteInterface/Clienteprops';
 import { ClientesContext } from '@/context/ClientesContext';
 import { useContext } from 'react';
 
-const useFetchClientes = (initialCityFilter = '') => {
+export const useFetchClientes = (initialCityFilter = '') => {
 	const [data, setData] = useState<Usuarios[]>([]);
 	const [totalPages, setTotalPages] = useState<number>(1);
 	const [cityFilter, setCityFilter] = useState<string>(initialCityFilter);
@@ -14,11 +14,7 @@ const useFetchClientes = (initialCityFilter = '') => {
 	const { pageNumber, setPageNumber } = useContext(ClientesContext);
 
 	useEffect(() => {
-		const fetchData = async (
-			pageNumber: number,
-			city: string,
-			resetPage: boolean = false
-		) => {
+		const fetchData = async (pageNumber: number, city: string) => {
 			setIsLoading(true);
 			try {
 				const response = await axios.get(
@@ -33,7 +29,7 @@ const useFetchClientes = (initialCityFilter = '') => {
 			}
 		};
 
-		fetchData(pageNumber, cityFilter, cityFilter !== '');
+		fetchData(pageNumber, cityFilter);
 	}, [pageNumber, cityFilter]);
 
 	const changePage = (pageIndex: number) => {
@@ -50,5 +46,3 @@ const useFetchClientes = (initialCityFilter = '') => {
 		isLoading
 	};
 };
-
-export default useFetchClientes;

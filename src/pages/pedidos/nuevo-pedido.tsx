@@ -8,19 +8,17 @@ const NuevoPedido = () => {
 	return (
 		<>
 			<Head>
-				<title>JohnS Pyme Desk | Pedidos</title>
+				<title>JohnS Pyme Desk | Nuevo Pedido</title>
 				<meta
 					name='description'
-					content='Gestione y supervise todos los pedidos de los clientes de su tienda en esta página. Manténgase al tanto de los estados de los pedidos y gestione eficazmente las entregas.'
+					content='Cree los nuevo pedidos de los clientes de su tienda en esta página. Manténgase al tanto de los estados de los pedidos y gestione eficazmente las entregas.'
 				/>
 			</Head>
-			<AnimatedText
-				text='Nuevos Pedidos'
-				className='!text-6xl !text-center xl:!text-5xl lg:!text-center lg:!text=6xl md:!text-5xl sm:!text-3xl'
-			/>
-			<Layout>
-				<PedidoNuevoForm />
-			</Layout>
+			<main className='text-dark w-full min-h-[calc(100vh-80px)] dark:text-light'>
+				<Layout>
+					<PedidoNuevoForm />
+				</Layout>
+			</main>
 		</>
 	);
 };

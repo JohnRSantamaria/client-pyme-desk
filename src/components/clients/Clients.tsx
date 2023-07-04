@@ -2,10 +2,11 @@ import AnimatedText from '../AnimateText';
 import Client from './Client';
 import DropDownUsers from './DropDownUsers';
 import PaginationNav from '../pagination/PaginationNav';
-import useFetchClientes from '@/hooks/useFetchClientes';
+import SpinLoader from '../svgs/SpinLoader';
+
 import { useRouter } from 'next/router';
 import { Usuarios } from '@/interfaces/clienteInterface/Clienteprops';
-import SpinLoader from '../svgs/SpinLoader';
+import { useFetchClientes } from '@/hooks/useFetchClientes';
 
 import { BsFillPersonFill } from 'react-icons/bs';
 

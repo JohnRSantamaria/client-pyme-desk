@@ -9,7 +9,7 @@ import DropDownEstado from './DropDownEstado';
 import { BsFillHandbagFill } from 'react-icons/bs';
 import { useRouter } from 'next/router';
 
-export const Filters = () => {
+const Filters = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const router = useRouter();
 	const {
@@ -80,3 +80,4 @@ export const Filters = () => {
 		</header>
 	);
 };
+export default Filters;

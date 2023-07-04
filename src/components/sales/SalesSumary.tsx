@@ -35,7 +35,7 @@ const SalesSumary = () => {
 				className='!text-6xl !text-center xl:!text-5xl lg:!text-center lg:!text=6xl md:!text-5xl sm:!text-3xl'
 			/>
 
-			<section className='flex flex-col w-full auto pt-16 shadow-2xl mb-16'>
+			<section className='flex flex-col w-full auto pt-16 shadow-lg mb-16'>
 				<article className='grid grid-cols-3 grid-flow-row place-items-center gap-y-16 gap-x-2  2xl:grid-cols-2 lg:grid-cols-1 md:pb-16'>
 					<SalesItems
 						title={'Número de pedidos'}

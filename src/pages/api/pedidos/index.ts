@@ -46,7 +46,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 			await axios.patch(url, { estado });
 			res.status(200).json({ message: 'Solicitud PATCH enviada con éxito.' });
 		} catch (error: unknown) {
-			res.status(400).json({ error: 'Error al enviar la solicitud PATCH.' });
+			res
+				.status((error as any).response?.status || 500)
+				.json((error as any).response?.data || {});
 		}
 	} else if (method === 'POST') {
 		const URL = 'https://server-pyme-desk.onrender.com/api/pedidos/';
@@ -56,7 +58,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 			await axios.post(URL, data);
 			res.status(200).json({ message: 'Solicitud POST enviado con éxito.' });
 		} catch (error: unknown) {
-			res.status(400).json({ error: 'Error al enviar la solicitud POST.' });
+			res
+				.status((error as any).response?.status || 500)
+				.json((error as any).response?.data || {});
 		}
 	}
 }

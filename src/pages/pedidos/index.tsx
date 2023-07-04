@@ -14,8 +14,8 @@ function Pedidos() {
 					content='Gestione y supervise todos los pedidos de los clientes de su tienda en esta página. Manténgase al tanto de los estados de los pedidos y gestione eficazmente las entregas.'
 				/>
 			</Head>
-			<main className='flex w-full flex-col items-center min-h-[calc(100vh-80px)] dark:text-light'>
-				<Layout className='flex flex-col items-center gap-2 pt-2'>
+			<main className='text-dark w-full min-h-[calc(100vh-80px)] dark:text-light'>
+				<Layout>
 					<PedidosComponent />
 				</Layout>
 			</main>

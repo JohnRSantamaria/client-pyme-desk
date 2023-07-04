@@ -19,7 +19,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, name, checked, onChange }) =
 					onChange={onChange}
 					name={name}
 					className={`
-            relative flex h-6 w-6 items-center justify-center rounded-lg transition-all duration-200 outline-none ring-1 bg-gray-200 ring-gray-200
+            relative flex h-6 w-6 items-center justify-center rounded-lg transition-all duration-200 outline-none ring-1 bg-gray-200 dark:bg-zinc-700 ring-gray-200
             ${!checked ? 'ring-gray-400' : ''}
             ${checked ? 'ring-primary dark:ring-primaryDark' : ''}           
           `}
