@@ -11,21 +11,18 @@ export const NavBar = () => {
 				>
 					<span className='text-xl font-bold sm:hidden'>PYME DESK</span>
 				</Link>
-				<nav className='flex items-center justify-between'>
+				<nav className='flex items-center justify-between gap-8'>
 					<CustomLink
 						href='/'
 						title='Inicio'
-						className='mr-4'
 					/>
 					<CustomLink
 						href='/clientes'
 						title='Clientes'
-						className='mx-4'
 					/>
 					<CustomLink
 						href='/pedidos'
 						title='Pedidos'
-						className='mx-4'
 					/>
 				</nav>
 			</div>
