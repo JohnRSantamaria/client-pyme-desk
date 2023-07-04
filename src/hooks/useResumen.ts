@@ -5,7 +5,7 @@ import { Resumen } from '@/interfaces/fetchResumenResponse';
 export const useResumen = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [resumen, setResumen] = useState<Resumen>();
-	const [error, setError] = useState<boolean>(true);
+	const [error, setError] = useState<boolean>(false);
 
 	useEffect(() => {
 		if (resumen === undefined) {

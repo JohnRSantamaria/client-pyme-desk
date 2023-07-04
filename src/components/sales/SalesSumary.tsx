@@ -8,6 +8,9 @@ import SalesItems from './SalesItemsProps';
 import BarsPrueva from '../Charts/BarChart';
 import { useResumen } from '@/hooks/useResumen';
 import SpinLoader from '../svgs/SpinLoader';
+import Robot from '../../../public/animations/Robot.json';
+
+import Lottie from 'lottie-react';
 
 const SalesSumary = () => {
 	const { resumen, error } = useResumen();
@@ -22,10 +25,15 @@ const SalesSumary = () => {
 
 	if (error) {
 		return (
-			<p>
-				El servidor no esta diponible en este momento por favor espere uno minutos y
-				recarge la pagina
-			</p>
+			<main className='flex flex-col justify-center items-center'>
+				<section className='flex justify-center font-bold text-2xl text-center'>
+					El servidor NO esta disponible por favor intente en unos minutos
+				</section>
+				<Lottie
+					className='w-3/4'
+					animationData={Robot}
+				/>
+			</main>
 		);
 	}
 
