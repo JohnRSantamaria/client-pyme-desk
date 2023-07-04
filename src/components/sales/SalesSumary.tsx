@@ -8,32 +8,16 @@ import SalesItems from './SalesItemsProps';
 import BarsPrueva from '../Charts/BarChart';
 import { useResumen } from '@/hooks/useResumen';
 import SpinLoader from '../svgs/SpinLoader';
-import Robot from '../../../public/animations/Robot.json';
-
-import Lottie from 'lottie-react';
+import { numberFormat } from '@/helpers/numberFormat';
 
 const SalesSumary = () => {
-	const { resumen, error } = useResumen();
+	const { resumen } = useResumen();
 
 	if (!resumen) {
 		return (
 			<section className='flex justify-center items-center '>
 				<SpinLoader />
 			</section>
-		);
-	}
-
-	if (error) {
-		return (
-			<main className='flex flex-col justify-center items-center'>
-				<section className='flex justify-center font-bold text-2xl text-center'>
-					El servidor NO esta disponible por favor intente en unos minutos
-				</section>
-				<Lottie
-					className='w-3/4'
-					animationData={Robot}
-				/>
-			</main>
 		);
 	}
 
@@ -55,14 +39,14 @@ const SalesSumary = () => {
 			<section className='flex flex-col w-full auto pt-16 shadow-lg mb-16'>
 				<article className='grid grid-cols-3 grid-flow-row place-items-center gap-y-16 gap-x-2  2xl:grid-cols-2 lg:grid-cols-1 md:pb-16'>
 					<SalesItems
-						title={'Número de pedidos'}
+						title={'Número total de pedidos'}
 						data={numero_de_pedidos}
 					>
 						<Truck className='text-primary dark:text-primaryDark' />
 					</SalesItems>
 
 					<SalesItems
-						title={'Número de clientes'}
+						title={'Número total de clientes'}
 						data={numero_de_clientes}
 					>
 						<Customer className='text-primary dark:text-primaryDark' />
@@ -70,21 +54,27 @@ const SalesSumary = () => {
 
 					<SalesItems
 						title={'Ingresos del último mes'}
-						data={`$ ${ingresos_del_ultimo_mes}.0` || 0}
+						data={numberFormat(ingresos_del_ultimo_mes) || 0}
 					>
 						<Money className='text-primary dark:text-primaryDark' />
 					</SalesItems>
 
 					<SalesItems
 						title={'Ciudad con más pedidos'}
-						data={ciudad_con_mas_pedidos?.cliente__ciudad || 'No disponible'}
+						data={
+							`${ciudad_con_mas_pedidos.total} ordenes de ${ciudad_con_mas_pedidos.cliente__ciudad}` ||
+							'No disponible'
+						}
 					>
 						<CityScape className='text-primary dark:text-primaryDark' />
 					</SalesItems>
 
 					<SalesItems
 						title={'Producto más vendido'}
-						data={producto_mas_vendido?.producto__nombre || 'No disponible'}
+						data={
+							`${producto_mas_vendido.total} ${producto_mas_vendido.producto__nombre}` ||
+							'No disponible'
+						}
 					>
 						<Tshirt className='text-primary dark:text-primaryDark' />
 					</SalesItems>

@@ -9,10 +9,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 			);
 			const data = response.data;
 
-			return res.status(200).json(data);
+			res.status(200).json(data);
 		} catch (error: any) {
 			if (error.code === 'ERR_BAD_RESPONSE') {
-				return res.status(500).json({ message: error.message });
+				res.status(500).json({ message: error.message });
 			}
 
 			res
